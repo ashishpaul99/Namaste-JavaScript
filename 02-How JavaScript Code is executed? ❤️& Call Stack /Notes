@@ -1,0 +1,188 @@
+=>Lecture 2-How JavaScript Code is executed? ❤️& Call Stack
+->What happens when js code is runned.
+->execution context is created with the help of js program.
+
+eg-1:
+var n=2;
+function square(num){
+    var ans=num*num;
+    return ans;
+}
+
+var square2=square(n);
+var square4=square(4);
+
+->When js code is runned global execution code is created.
+->It has two components
+1. Memory component
+2. Code component
+
+->Execution context is created in two phases.
+1. Memory creation phase
+2. Code execution phase
+
+eg-1:
+var n=2;
+function square(num){
+    var ans=num*num;
+    return ans;
+}
+
+var square2=square(n);
+var square4=square(4);
+
+1. Memory Creation Phase
+->Js allocate memory for all varaibles and function.
+->In case of varaibles it stores special value which is known as undefined. 
+->undefined is place holder.
+->In case of function it stores whole function.
+
+Memory                           |          Code
+n:undefined                      |       
+square:{whole function}          |  
+square2:undefined                |
+square4:undefined                |
+
+2. Code Exectution Phase
+->After allocation code get executed onec again
+->js once again runs through the code line by line.
+
+Memory                           |          Code
+n:2                    |       
+square:{whole function}          |  
+square2:undefined                |
+square4:undefined                |
+
+
+
+->In this phase 2 is stored in the varaible n.
+->after that it goes to next variable.
+->At varaible square2 we invoke a function.
+
+2.1 How functions get executed in js?
+->function are heart of js.
+->functions are mini code.
+->When functions are get executed then brand new exection context is created.
+
+eg-1:
+function square(num){
+    var ans=num*num;
+    return ans;
+}
+
+num is parameter of the function
+n is argument 
+
+=>At line var square2=square(n);
+->When functions are get executed then brand new exection context is created.
+
+->again two phases of execution comes into picture
+1. Memory creation phase
+2. Code execution phase
+
+
+1. Memory creation phase of function
+Memory             |   Code
+num:undefined      |
+ans:undeifned      |
+
+2. Code execution phase of function
+Memory             |   Code
+num:2              |  num*num 
+ans:4              |
+
+=>Code execution phase of function when 2 as argument
+Memory                           |                     Code
+n:2                              |    Memory             |   Code      <=function executed for square(2) 
+square:{whole function}          |    num:2              |  num*num 
+square2:4                        |    ans:4              |  return ans
+square4:undefined                |
+
+->Return statements tells to work is done return the execution control to the execution context where the function was invoke.
+->now control goes to the square2 variable.
+->return ans finds value of ans in memory and returns the value to the  square2 variable.
+->undefined value of square2 is replaced with 4
+->when whole function is get executed then the instance of function will be deleted.
+->whole execution context of function get deleted after returning the value.
+
+
+
+=>At line var square4=square(4);
+->When thread reaches varaible square4 then brand new exection context is created.
+->again two phases comes into picture
+1. Memory creation phase of function
+Memory             |   Code
+num:undefined      |
+ans:undeifned      |
+
+->num will get the argument from the invocation
+->4 is stored in num avraiable.
+
+2. Code execution phase of function 
+Memory             |   Code
+num:4              |  num*num 
+ans:16             |   return ans
+
+=>Code execution phase of function when 4 as argument
+
+Memory                           |                     Code
+n:2                              |    Memory             |   Code      <=function executed for square(4) 
+square:{whole function}          |    num:4              |  num*num 
+square2:4                        |    ans:16             |  return ans
+square4:16                       |
+
+->end of execution ans is returned to square4 variable.
+->after execution function whole execution functio deleted.
+
+->After whole code is executed then wholle global execution context also deleted.
+
+2.2 Call Stack
+->it is difficult to manage whole executions.
+->it manages execution using call stack.
+
+        |               |
+        |               |
+        |               |
+        |     GEC       |          
+        |_______________|
+
+
+
+->it is stack which has global execution context at the bottom of the stack.
+->When a function invoked or new execution is created then it is put in the stack.
+
+=>At line var square2=square(n);
+->New exectuion E1- after function E-1 is get executed it get poped out of stack.
+
+        |               |
+        |               |
+        |      E1       |
+        |     GEC       |          
+        |_______________|
+
+=>At line var square4=square(4);
+->New exectuion E2->after function E-2 is get executed it get poped out of stack.
+        |               |
+        |               |
+        |      E2       |
+        |     GEC       |          
+        |_______________|
+
+->then control goes to global exection context.
+->After whole code is executed then wholle global execution context also deleted or poped out. then call get empty
+
+
+        |               |
+        |               |
+        |               |
+        |               |          
+        |_______________|
+
+
+->call stack maintains the order of execution of execution contexts
+->Call stack also known as 
+1. Execution Context Stack
+2. Program stack
+3. control stack
+4. runtime stack
+5. machine  stack
