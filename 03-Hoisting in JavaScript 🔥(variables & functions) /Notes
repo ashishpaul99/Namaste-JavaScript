@@ -70,7 +70,7 @@ undefined
 
 
 
-=>Hoisting Explaintion 
+=>1. Hoisting Explaintion 
 ->Before this code get executed js allocates memory for the variables and functions in the code.
 ->Even before code starts executing memory allocated to this varaibles and functions.
 
