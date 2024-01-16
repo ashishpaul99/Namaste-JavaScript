@@ -20,7 +20,7 @@ console.log(x);  //x is not defined
 ->undefined is place holder which is placed in the memory.
 
 2.1 Accessing value of a before intializing it. it gives undefined.
-->undefined is allocated by js engine to a before running program.
+->undefined is allocated by js engine before executing program.
 eg-2:
 console.log(a);  //undefined
 var a=7;
