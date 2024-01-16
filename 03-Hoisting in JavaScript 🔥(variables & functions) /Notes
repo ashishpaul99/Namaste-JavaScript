@@ -129,7 +129,7 @@ eg-4:
 ->It says getName is not a function.
 ->arrow function behaves like variable.
 ->undefined is given to getName.
-->getName1 is a function.in this case meomry is allocated as whole function.
+->getName1 is a function.in this case meomry is allocated for whole function.
 ->getName, getName2 functions behave like variables. in this cases it allocates the memory with place holder undefined.
 
 
