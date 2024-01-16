@@ -1,0 +1,152 @@
+// eg-1:
+// ->JavaScript will try to find wheather b is existed in local memory space(within the function).
+
+// function a(){
+//     console.log(b); //10
+// }
+// var b=10;
+// a();
+
+// Output:10
+
+// eg-2: b which is intialized gloablly is accessed inside functions also
+
+// function a(){
+//     c();
+//     function c(){
+//        console.log(b); //10
+//     }
+// }
+// var b=10;
+// a();
+
+// Output:10
+
+// eg-3: b is intialized inside function which is not accessed outside function. it gives b is not defined.
+// function a(){
+//     var b=10;
+//     c();
+//     function c(){
+//         console.log(b);
+//     }
+// }
+
+// console.log(b);
+// a();
+
+// Output:
+// b is not defined
+
+// 3. Understanding the meaning of Scope 
+// 1. Scope
+// ->Where a variable or function accessed in code.
+
+// eg-1:
+// function a(){
+//     var b=10;
+//     c();
+//     function c(){
+//         console.log(b);
+//     }
+// }
+
+// console.log(b);
+// a();
+
+// ->What is scope of variable b?
+// ->where can I access variable b.
+// ->is b inside the scope of function.
+
+// 4. Diving deep into code & behind the scenes
+// ->lexical environment with visual representation.
+// ->see image
+
+
+// 5. Introduction to Lexical Environment
+// ->Whenever execution context is created then lexical environment also created.
+// ->Lexical environment is the local memory along with the lexical environment of the parent.
+
+// 6. What is the meaning of `Lexical`?
+// 1. Lexical 
+// ->hirerachy or sequence
+
+// eg-1:
+// function a(){
+//     var b=10;
+//     c();
+//     function c(){
+//         console.log(b);
+//     }
+// }
+
+// console.log(b);
+// a();
+
+// ->c() function is lexically  inside a() function and a() function is lexically inside global scope.
+                   // (or)
+// ->c() function is lexically sitting inside a() function. 
+
+// 7. Lexical Environment definition
+// ->Lexical environment is the local memory along with the lexical environment of the parent.
+
+
+// 8.Understanding Lexical Environment visually
+// ->see image -> orange thing is reference to the lexical enironement of the parent.
+// -> it is pointing the lexical environement of the parent.
+
+// eg-1:
+// function a(){
+//     var b=10;
+//     c();
+//     function c(){
+//         console.log(b);
+//     }
+// }
+
+// ->c() function get access to lexical environment of a() function.
+
+    // c() function(LE)-----> a() function(LE) ----->global(LE)---->Null
+
+// ->lE of c() is pointing to LE of a()
+// ->LE of a() is pointing to LE of global
+// ->LE of global is pointing to null because it does not have parent.
+
+
+// 9.  How Scope and  Lexical Environment works in JavaScript
+// eg-1:
+// function a(){
+//     var b=10;
+//     c();
+//     function c(){
+//         console.log(b);  // line-1
+//     }
+// }
+// a();
+// ->When js engine encounters line-1 it tries to find out b in local memory of c() function. it won't find in c(),
+// ->then it goes to lexical environement of c().
+// ->it finds out b in c().
+// ->it prints b on console.
+// ->if b is not defined then we encounter that b is not deined.
+
+// 10. The Scope Chain in JavaScript 
+// ->the way of finding variable in different lexical environements is called scope chain in JS.
+// ->Whole chain of lexical enivronment is called scope chain.
+// ->refer Image.
+
+// 11. Quick Revision of Scope, Lexical Environment and the Scope Chain
+// ->Lexical environment is created when execution context is created.
+// ->Lexical environement is the local memory and reference to lexical environement of parent.
+
+// 12. Browser Demo of Lexical Environment & The Scope Chain
+
+//1. lexical environment of c()
+// Local   >This: Window
+// Closure > (a) b: 10 //c has access to LE of a
+// Global  
+
+// 2. lexical environment of a()
+// Local
+// Global
+
+// 3. lexical environment of global
+// Global
