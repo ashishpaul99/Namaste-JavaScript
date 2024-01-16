@@ -1,0 +1,99 @@
+5. SHORTEST JS Program window & this keyword
+1.  Global Execution Context and window object in JavaScript
+
+->Whenever any js program run a global object is created, global execution context is created and this varaible is created.
+->Js engine still do it's work behind the scene for empty file too.
+->global execution context is created for empty file and sets up the memory space.
+
+a. Window Object
+->Window is global level object which is created along with the global execution context.
+->Js engine creates Window Object.
+->the window object is created automatically by browser that represents a window of a browser.
+->it is not an object of javascript. it is a browser object.
+->Global object in case of browsers it is known as windows.
+
+->write window in console.
+eg:
+window
+Window {window: Window, self: Window, document: document, name: '', location: Location, …}
+
+->you will see window object with lot of function.
+->these functions and variables are created by js engine.
+->they can be accessed globally in anywhere in the Program.
+
+b. Introduction to "this" keyword in browser
+->Js engine also creates this keyword or varaible.
+->At global level this points to the window object.
+->"this" is created along with execution context. even for functional and global execution context.
+->At global level "this" points to global object(window).
+
+
+c. Global object
+->Whenever any js program run a global object is created, global execution context is created and this varaible is created.
+->Global object in case of browsers it is known as windows.
+->JS runs on servers and browsers. 
+->Where it runs there must be js engine should be there.
+->In chrome it is called V8
+->every browser has its own JS engine.
+->All these js engine had resposibility to create this global object(Window in case of browsers).
+->in case of node js it is different.
+->eventhough file is empty js creates global object.
+
+
+->At the global level this===window
+eg: In console
+this===window
+o/p: true
+
+->"this" is created along with execution context. even for functional and global execution context.
+->At global level "this" points to global object(window).
+
+d. Global space
+->Global space - any code inside js but it should not in function.
+
+eg-1:
+var a=10;       // Inside global space
+function b(){
+    var x=10;   //it is not in global space
+}
+
+->Any varaible and function created in global space are attached to global object(Window).
+->a and b() Present in the window.
+->x will not present in the window.
+->In window(global object)
+a:10
+b: ƒ b()
+
+eg-2: accessing a and b() in windows
+var a=10;   // Inside global space
+function b(){
+    var x=100;  //it is not in global space
+    console.log(x);
+}
+console.log(window.a); //10
+console.log(a);       //10
+console.log(this.a);  //10
+console.log(this.b()) //100
+
+->If we doesn't put anything infront of var or funtion it assumes to be global.
+eg-3:
+console.log(a); //10
+
+->In global level "this" points to window object. we can access variables and functions using this keyword.
+eg-4:
+console.log(this.a);  //10
+console.log(this.b()) //100
+
+
+
+
+
+
+
+
+
+
+
+
+
+
