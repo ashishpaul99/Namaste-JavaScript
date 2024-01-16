@@ -1,0 +1,108 @@
+6. undefined vs not defined in JS 🤔
+1. Introduction to undefined in JavaScript
+->undefined is very special keyword in js.
+->Js engine creates global execution context and allocates memory for variables and functions even before code is written.
+->undefined comes to picture in this senario.
+
+2.Code Example of undefined in JS
+eg-1:
+console.log(a);  //undefined
+var a=7;
+console.log(a);  //7
+console.log(x);  //x is not defined
+
+->Execution context 
+  memory        |    code
+ a:undefined    |
+
+->before this line get executed memory for a is allocated.
+->Js reserves memory for a.
+->undefined is place holder which is placed in the memory.
+
+2.1 Accessing value of a before intializing it. it gives undefined.
+->undefined is allocated by js engine to a before running program.
+eg-2:
+console.log(a);  //undefined
+var a=7;
+
+2.2 Accessing variable x which is not defined. it gives not defined.
+eg-3:
+var a=7;
+console.log(x);  //x is not defined
+
+2.3 Accessing value of a it's execution
+eg-4:
+var a=7;
+console.log(a);
+
+=>3.  Undefined vs Not Defined
+a. undefined
+->it is the special keyword. it takes up it's own memory. it is a place holder kept in memory until a varaible get assigned with some other value.
+->undefined is place holder which is placed in the memory.
+->undefined is allocated by js engine to a before running progr
+->undefined is not equal to empty.
+
+b. Not Defined
+->which has not been allocated memory.
+
+
+=>4. undefined vs not defined demo using code
+eg-2: a is not intialized with any value
+var a;
+console.log(a);  //undefined
+
+if(a===undefined){
+    console.log("a is undefined");  //a is undefined
+}
+else{
+    console.log("a is undefined");
+}
+
+Output:
+undefined
+a is undefined
+
+eg-3: a is intialized with some value
+var a;
+console.log(a);  //undefined
+a=7; // a is defined
+
+if(a===undefined){
+    console.log("a is undefined");  
+}
+else{
+    console.log("a is not undefined"); //a is not undefined
+}
+
+Output:
+undefined
+a is not undefined
+
+5. JS is a loosely typed language a.k.a weakly typed language
+->JS is losely typed language or weekly typed language.
+->it does not attach it's variables to any specific data types.
+->if string is given to a then after sometime it can also replaced with numbers.
+eg-1 
+var a;
+console.log(a);
+a="Ashish";
+a=10;
+console.log(a);
+
+Output:
+undefined
+10
+
+6. Mistake you should not make while using undefined
+-> it is not good way to give undefined to a varibale.
+->it may lead to lot of inconsistencies.
+->undefined is meant to know wheather the variable is assigned or Not.
+
+
+
+
+
+
+
+
+
