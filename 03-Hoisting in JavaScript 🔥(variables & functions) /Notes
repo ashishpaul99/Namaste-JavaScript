@@ -163,7 +163,9 @@ var getName= () =>{
 }
 
 Output:
+getName1
 getName2 is not a function
+
 
 
 2. How execution works call stack for this code? 
