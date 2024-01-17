@@ -1,6 +1,6 @@
 4. How functions work in JS ❤️ & Variable Environment?
 1. How function invocation behaves behind the secens?
-1. How function invocation behaves behind the secens?
+
 ->We can invoke function before intializing them hust becuase of hoisting.
 
 eg-1:
