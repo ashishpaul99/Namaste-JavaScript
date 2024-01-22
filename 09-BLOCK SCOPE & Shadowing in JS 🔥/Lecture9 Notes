@@ -107,7 +107,7 @@ This is known as Shadowing or Variable Shadowing.
 //     var b=12;
 //     const c=100;
 // // accessing varaible a inside block
-//     console.log(a);//10
+//     console.log(a);/20
 //     console.log(b);//12
 //     console.log(c);//100
 // }
