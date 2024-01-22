@@ -257,7 +257,10 @@ than global this phase is known as temporal dead zone.
 
 //13. How to avoid Temporal Dead Zone
 // ->temporal zone leads to unexpected errors sometime.
-// ->to avoid temporal dead zone always put delcarations and intializations on the top of the scope so that as the code starts it hits the intialization part at he first then it goes into logice.
-// ->we are shrinking the temporal dead zone to zero while movind declarations and intialization on the tope of the scope.
+// ->to avoid temporal dead zone always put delcarations and intializations on 
+the top of the scope so that as the code starts it hits the intialization part at he first 
+then it goes into logice.
+// ->we are shrinking the temporal dead zone to zero while movind declarations and intialization
+on the tope of the scope.
 
 
