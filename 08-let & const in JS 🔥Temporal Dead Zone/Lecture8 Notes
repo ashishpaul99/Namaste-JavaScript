@@ -28,7 +28,7 @@
 
 //3. Behind the Scenes of let & const hoisting in browser
 // ->In case of let and const they are also allocated memory that is called hoisting but they are stored in different memory space than global.
-// ->they cannot before intializing them with a value.
+// ->they cannot accessed before intializing them with a value.
 
 // ->checking variable a is hoisted.
 // eg-1:
