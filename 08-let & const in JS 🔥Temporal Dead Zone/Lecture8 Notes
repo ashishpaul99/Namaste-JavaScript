@@ -60,9 +60,11 @@
 // ->after execution a can be accessed.
 
 //=>4. Temporal Dead Zone in JavaScript
-// ->Temporal dead zone is the time since when let variable was hoisted and till it is intialized some value.
+// ->Temporal dead zone is the time since when let variable was hoisted and 
+till it is intialized some value.
 // ->Time between is called temporal dead zone.
-// ->before intializing a let or const variable it is stored in different memory space than global this phase is known as temporal dead zone.
+// ->before intializing a let or const variable it is stored in different memory space 
+than global this phase is known as temporal dead zone.
 // ->when let or const varaible is intialized with value then temporal dead zone ends.
 // ->Whenever varaible is accessed inside temporal dead zone it gives refernce error.
 // ->a variable cannot be accessed when it is in temporal dead zone.
