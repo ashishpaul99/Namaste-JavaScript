@@ -96,7 +96,7 @@ This is known as Shadowing or Variable Shadowing.
 // ->var variable is attached to global scope.
 // ->a inside is block scoped.
 // ->a outside in different scope other than global and block.
-// ->varaile b inside the block is shadowing variable a outside the block.
+// ->variable b inside the block is shadowing variable a outside the block.
 
 
 
