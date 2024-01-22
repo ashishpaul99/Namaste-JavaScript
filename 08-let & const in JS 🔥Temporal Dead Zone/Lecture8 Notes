@@ -54,7 +54,7 @@
 // Global
 // b: undefined
 
-// ->they cannot before intializing them with a value.
+// ->they cannot accessed before intializing them with a value.
 // ->after executing lie let a=10 then value is stored in a.
 // ->now identifier a is pointed to 10.
 // ->after execution a can be accessed.
