@@ -1,0 +1,452 @@
+// 14-Asynchronous JavaScript & EVENT LOOP from scratch 🔥   Date:23/01/24
+
+// 1. How JS Engine Executes the Code using Call Stack?
+// ->Javascript is synchronous single threaded language.
+// ->it has one call stack and it can do one thing at a time.
+// ->this call stack present in JavaScript engine.
+// ->All the code in js executed in call stack.
+// eg-1:
+// function a(){
+//     console.log("a");
+// }
+// a();
+// console.log("end");
+
+// =>Code execution
+// a. Whenever a js code is runned a global execution context is created and pushed into call stack.
+// ->now the whole code run in GEC.
+
+
+// |               |
+// |               |
+// |               |
+// |     GEC       |          
+// |_______________|
+
+// b.new exectution context is created when a()
+//  function invoked.
+// ->this execution context is pushed into call stack.
+// ->it prints a on console.
+
+
+// |               |
+// |               |
+// |      a()      |
+// |     GEC       |          
+// |_______________|
+
+// c. after executing function it pops out a() function execution context. 
+// ->now control goes to print end on console.
+
+// d. After executing whole code global execution context poped out of the call stack.
+
+// ->call stack becomes empty.
+// |               |
+// |               |
+// |               |
+// |               |          
+// |_______________|
+
+
+
+// 2. Main Job of the Call Stack
+// ->Main job of call stack is to execute whatever comes inside it.
+// ->it does not wait for anything.
+// ->it just quickly executes that.
+
+// 3. How does JavaScript perform async tasks
+// ->What if we need to wait something.
+// ->what if we need a script or program need to be run after sometime.
+// ->it's not possible to run like that.
+// ->because call stack does not have timer.
+
+
+// 4. Behind the Scenes in Browser
+// ->call stack is present in JS engine.
+// ->js engine is present in browser.
+// ->js code is executed in call stack.
+// ->refer image
+// ->Browser contains
+// 1. js engine inside it. 
+// 2. it has local storage in it.
+// 3. a timer
+// 4. it has access to servers.
+
+// ->we need access to all these things for running js code in call stack.
+// ->js engine need some way to access things present in browser.
+// ->Let us see how we can do it.
+
+// 5. Web APIs in JS
+// ->to access those all things present in browsers web api's are required.
+
+// ->Web API's
+// ->Browser give access inside js call stack or js engine to use these API's.
+// ->browser give access inside js call stack because of global object.
+// ->global object is window.
+// ->Browser gives the facility to js engine to use all these web api's through a keyword window.
+// ->if window.setTimeout is written in code it gives the access to the timer.
+// ->if window.localStorage is written in code it gives the access to the local storage.
+// ->if window.console.log is written in code it gives the access to log into the console.
+// ->window object is global object which contains all web api's inside it. we can access without using window keyword.
+// ->Borwser wraps the web api's into global object and gives the access to js call stack.
+
+
+// 1. setTimeout()
+// 2. DOM API's 
+// 3. fetch() 
+// 4. local Storage
+// 5. Console
+// 6. Ḷocation
+
+
+
+// 1. setTimeout()
+// ->it is not a part of JavaScript.
+// ->DOM API's are not part of Javascript.
+// ->fetch, Local Storage, console.log is not a part of Javascipt. these are part of browsers.
+// ->it gives access to timer
+
+
+// 2. DOM API's ->browser give access to DOM API's
+// eg-1:
+// document.
+
+// 3. fetch() - it gives us access to make connection to the other servers(external severs).
+
+// 4. local Storage
+// 5. Console
+// 6. Ḷocation
+
+
+// 6. How setTimeout Works behind the scenes in Browsers
+// ->Executing the code using the web api's.
+// eg-1:
+// console.log("Start")
+
+// setTimeout(function cb(){
+//     console.log("Callback");
+// }, 5000);
+
+// console.log("End")
+
+// =>setTimeout Code Execution explaination
+
+// 1. whenever js code runs then global exectuion context is created and pushed into the call stack.
+// |               |
+// |               |
+// |               |
+// |     GEC       |          
+// |_______________|
+
+// 2. Then whole run line by line
+// ->Console.log("Start") line calls the console web api. these internally makes a call to modify or  log to console.
+// ->console is plugged through window to js code. which executed inside a global execution context.
+// ->Start is printed on console.
+
+
+// 3. at line setTimeout function
+// ->setTimeout function calls the setTimeout() web api and this gives access to timer.
+// ->it takes the call back function and delay.
+// ->when call function is passed to setTimeout function it basically regester a call back in window.
+// ->because of passing delay it's also starts the timer of 5000ms in timer.
+// ->js will wait for setTimeout function to execute but moves to next line.
+
+
+// 4. at line consol.log("End") it call the console web api and it logs into the console.
+
+
+
+
+// 5. Once all code get executed then global execution context poped out of the call stack.
+// |               |
+// |               |
+// |               |
+// |               |          
+// |_______________|
+
+// 6. As soon as the timer expires the call function needs to be executed.
+// ->all of the code executed in call stack.
+// ->we some how need call back function in call stack.
+
+
+// ->call stack job is execute code which comes in to it quickly.
+// ->Event loop and callback queue come into picture.
+
+// 7. Event Loop & CallBack Queue in JS
+// ->while 5000ms timer was running the call back was registered.
+// ->As soon as the timer expires the call function needs to be executed or needs to go inside to call stack.
+// ->all of the code executed in call stack.
+// ->we some how need call back function in call stack.
+// ->but it cannot directly go into call stack.
+
+// ->refer image Async5
+// 7.1 Call back queue
+// ->it goes to call stack through callback queue.
+// ->When the timer get expires the call back function put in call back queue.
+
+// 7.2 Event loop
+// ->the job of event loop is to check call back queue and takes the call back function fron call back queue and puts in call stack.
+// ->Event loop is like a gate keeper. it checks the call back queue and if there is any function it puts it in call stack. exectuion context of call back function is pushed into call stack.
+
+
+// |               |
+// |               |
+// |   cb          |
+// |               |          
+// |_______________|
+
+// ->call stack quicky executes this call back function line by line.
+
+// ->at line console.log("Callback") it calls the console web api. then "Callback" will get logged in console.
+
+// 8. How Event Listeners Work in JS?
+// ->An event listener is a function in JavaScript that waits for an event to occur then responds 
+// to it. 
+// eg-1:
+// console.log("Start");
+// document.getElementById("btn").addEventListener("click",function(){
+//     console.log("Callback");
+// })
+// console.log("End");
+
+// =>1. At lineline console.log("Start") calls the console web Api and it logs the "Start" on the console.
+
+// 2.At line which contains addEvenetListener is given by b owser to js engine through the window object in form of the web api which is the DOM api.
+// ->DOM - Document Object Model
+// ->it is like the html source code.
+
+// ->when we call document. it basically calling DOM API's which basicaly fetchs something from DOM.
+// ->When DOM API's is accessed it basically access the html code and tries to find button with id="btn"
+// and it return it. addEvenListener registers call back on event. that event is click.
+// ->Inside web api environement a call back will be registered.
+// ->that event is the click event.
+
+// ->refer image Async7
+// ->whenever addEventListener is found in code it reserve call back in web api and attachs event to it.
+// ->here it is click event.
+// eg-2:
+// document.getElementById("btn").addEventListener("click",function(){
+//     console.log("Callback");
+// })
+
+// ->js will not wait for addEventListener to execute but it moves to next line to execute.
+
+// 3. At line console.log("end") it calls console web api and "end" string is logged into console.
+
+// 4. after this global execution context poped out of call stack.
+// |               |
+// |               |
+// |               |
+// |               |          
+// |_______________|
+
+// 5. but event handler will stay on web api's environement until and unless explicitly we remove that event listener or close the browser.
+// ->Register call back function just sits over web api environment in the hope some user will some day click on buttona and call back function move to call stack to execute.
+
+// 6. When the user click the button then call function moves to the call back queue.
+// ->refer image Async8
+// ->Call back function pushed into call back queue waits for it's turn to push into call stack and get executed.
+
+
+// 9. More about Event Loop
+// ->Event loop has only one job continotusly monitor call stack as well as the call back queue.
+
+// eg:
+// console.log("Start");
+// document.getElementById("btn").addEventListener("click",function(){
+//     console.log("Callback");
+// })
+// console.log("End");
+
+// ->if call stack is empty then event loop sees in the call back queue that there is any function waiting to be executed inside call back queue. it takes the function and push it to call stack.
+
+
+//        Call Stack <-----Event Loop<-------Callback queue
+
+// ->refer image9
+
+// ->when event loop picks call back function from call back queue and put in call stack it vanishes in call back queue.
+// ->call back function in call stack quickly get executed. at line console.log("End") it calls the console web api after that it logs into console.
+
+// 10. Why do we need Event Loop?
+// ->Why do we need call back queue.
+// ->event loop would have been pick up call function directly  from web api's environment and put in call stack but not.
+
+// eg:
+// console.log("Start");
+// document.getElementById("btn").addEventListener("click",function(){
+//     console.log("Callback");
+// })
+// console.log("End");
+
+// 10. Why do we need call back queue?
+// ->if user click on the button for many times in that case the call function will be pushed into call back queue from web api environement many times.
+// ->refer image Async10
+
+
+// ->Event loop continously check wheather call stack is empty or not. if it is empty then event loop takes call back function from tne call back queue and push it into call stack for execution.
+
+
+// ->Event loop push all the call back functions in call back queue into the call stack and slowly all call back functions in call back queue exected one by one.
+// ->refer image Async11
+
+// ->There will lot of setTimeout functions, addEvenetListeners etc that's the reason we need to queue all the call back function in call back queue so that they can get a chance one after the other to pushed into call stack for execution.
+
+// 11. How fetch() function works
+// ->it gives us access to make connection to the other servers(external severs).
+// ->fetch go and request api call.
+// ->fetch function returns a promise.
+// ->we have to pass call back function which will be executed once promise is resolved.
+// ->when we get data then call back function will get executed.
+
+// eg-1:
+// console.log("Start");
+
+// setTimeout(function cbT(){
+//    console.log("CB SetTimeout");
+// },5000);
+
+
+// fetch("https://api.netflix").then(function cbf(){
+//     console.log("CB Netflix");
+// });
+
+// console.log("End");
+
+// Output:
+// Start
+// End
+// CB Netflix
+// CB SetTimeout
+
+
+
+// =>Code Execution explaination
+// 1. whenever js code runs then global exectuion context is created and pushed into the call stack.
+// |               |
+// |               |
+// |               |
+// |     GEC       |          
+// |_______________|
+
+
+// 2. setTimeout function calls the setTimeout() web api and this gives access to timer.
+// ->setTimeout basically register call back function
+// in web api environement and we also have timer of 5000ms.
+// ->then 5000ms timer starts.
+// ->Js engine moves to next line
+
+// ->web api environement
+// |               | ------>Timer
+// |               |       Dom API's
+// |               |       fetch()
+// |     cbt       |       console    
+// |_______________|
+
+
+
+
+// 3. now we have fetch function.
+// eg:
+// fetch("https://api.netflix").then(function cbf(){
+//     console.log("CB Netflix");
+// });
+
+
+// ->fetch is web api which is used make network call.
+// ->it basically register call back function(cbF) into web api environement.
+// ->now these two functions are present in web api environment.
+
+// ->web api environement
+// |               | ------>Timer
+// |               |       Dom API's
+// |     cbF       |       fetch()
+// |     cbT       |       console    
+// |_______________|
+
+// 4. cbT function waiting for timer to get expire. so that it get pushed to call back queue.
+// ->fetch function basically call netflix servers and netflix sercers return the data to fetch.
+// ->Once data is returned then call back function ready to be executed.
+
+// 12. MicroTask Queue in JS
+// ->just like the call back queue we also have micro task queue.
+// ->microtask queue has higher priority than call back queue.
+// ->refer Async15 image
+
+// ->whatever function comes into micto task queue get executed first and later call back functions in call stack queue get executed.
+
+// 5. function cbF which is call back function in case of promises and network calls will go to micro task queue.
+// ->refer Async16 and Async17 image
+
+// // ->event loop continously monitor the queue if call stack is empty it's job is to take call back functions form micro task queue and call stack queuea and push into call stack.
+
+// ->after timer get executed then call back function (cbF) will pushed into call back queue.
+
+
+// 6. Js will not wait for setTimeout function and fetch. it starts executing line after that. when it reaches console.log("End") it call console web api and logs it to console.
+// ->after executing code the global execution context pulls out of call stack. now call stack is empty.
+
+// 7. once call stack is empty event loop sees the pending tasks in micro task queue and call back queue.
+// ->refer async19 
+
+// 8. Because the micro task queue has higher priority  event loop takes the call back function(cbF) in micro stack queue pushed into call stack.
+// ->refer Async20 image
+
+// |               | 
+// |               |       
+// |     cbF       |      
+// |               |         
+// |_______________|
+
+
+// ->call stack will execute cbF function in call stack. it prints "CB Netflix" in console.
+// ->After execution it is poped out from the call stack.
+
+// 9.After executing cbF function in call stack then event loop takes cbT function from call back queue and pushes in call stack.
+
+// ->execution context again run code of cbT function.
+// ->"CB SetTimeout" prints in the console. and whole function will get executed.
+
+// ->refer image Async21 
+
+
+// eg-1:
+// console.log("Start");
+
+// setTimeout(function cbT(){
+//    console.log("CB SetTimeout");
+// },5000);
+
+
+// fetch("https://api.netflix").then(function cbf(){
+//     console.log("CB Netflix");
+// });
+
+// console.log("End");
+
+// Output:
+// Start
+// End
+// CB Netflix
+// CB SetTimeout
+
+// 13. What are MicroTasks in JS?
+// ->Micro task queue given high priority.
+// ->What can come inside micro task queue?
+// ->All the call back function which come through promises will go inside micro task queue.
+// ->there is something mutation obesever keeps on checking wheather there is mutation in the DOM tree it can execute call back function.
+
+// ->call back which come through Promises and mutation observers goes into micro task queues.
+
+// ->Call back function from the setTimeout() function, DOM API's, Event listenets all that goes into call back queue.
+// ->refer Aync22 image
+
+// ->call back is also known as task queue.
+// ->if multiple call back functions are in micro task queue and one call back function is in call back queue then event loop first gives chance to call back functions in micro task queue after that it gives chance to call back functions in call stack queue.
+
+// 14. Starvation of Functions in  Callback Queue
+// ->refer Async23 image
+// ->just becasuse event loop gives chance to call back functions in micro task queue before any call back queue. if micro task creates multiple micro tasks
+// then call back function in call stack will never get a chance to execute becasue this micro task queue has more priority this known as starvation.
+
+// ->there is possibility that task over here does not get a chance to executed for a long time in this case it is known as starvation of call back queue.
