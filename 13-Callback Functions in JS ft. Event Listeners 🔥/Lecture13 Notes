@@ -58,7 +58,8 @@ x(function y(){
 
 5. Creating an Event Listeners in JavaScript
 1. What are event listeners?
-->An event listener is a function in JavaScript that waits for an event to occur then responds to it. JavaScript is a programming language that developers use to make interactive webpages.
+->An event listener is a function in JavaScript that waits for an event to occur then responds 
+to it. JavaScript is a programming language that developers use to make interactive webpages.
 
 ->on click it's call function.
 ->click button is picked and event listener is added to it.
