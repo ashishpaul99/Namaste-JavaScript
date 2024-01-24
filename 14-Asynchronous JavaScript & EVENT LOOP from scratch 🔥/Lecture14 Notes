@@ -213,7 +213,7 @@ console.log("End");
 
 =>1. At lineline console.log("Start") calls the console web Api and it logs the "Start" on the console.
 
-2.At line which contains addEvenetListener is given by b owser to js engine through the window object in form of the web api which is the DOM api.
+2.At line which contains addEvenetListener is given by browser to js engine through the window object in form of the web api which is the DOM api.
 ->DOM - Document Object Model
 ->it is like the html source code.
 
