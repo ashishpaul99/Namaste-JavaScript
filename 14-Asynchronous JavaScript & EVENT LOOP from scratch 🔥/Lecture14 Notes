@@ -260,7 +260,8 @@ document.getElementById("btn").addEventListener("click",function(){
 })
 console.log("End");
 
-->if call stack is empty then event loop sees in the call back queue that there is any function waiting to be executed inside call back queue. it takes the function and push it to call stack.
+->if call stack is empty then event loop sees in the call back queue that there is any function waiting 
+to be executed inside call back queue. it takes the function and push it to call stack.
 
 
        Call Stack <-----Event Loop<-------Callback queue
@@ -282,17 +283,21 @@ document.getElementById("btn").addEventListener("click",function(){
 console.log("End");
 
 10. Why do we need call back queue?
-->if user click on the button for many times in that case the call function will be pushed into call back queue from web api environement many times.
+->if user click on the button for many times in that case the call function will be pushed into 
+call back queue from web api environement many times.
 ->refer image Async10
 
 
-->Event loop continously check wheather call stack is empty or not. if it is empty then event loop takes call back function from tne call back queue and push it into call stack for execution.
+->Event loop continously check wheather call stack is empty or not. if it is empty then event loop takes
+call back function from tne call back queue and push it into call stack for execution.
 
 
-->Event loop push all the call back functions in call back queue into the call stack and slowly all call back functions in call back queue exected one by one.
+->Event loop push all the call back functions in call back queue into the call stack and slowly all call back functions 
+in call back queue exected one by one.
 ->refer image Async11
 
-->There will lot of setTimeout functions, addEvenetListeners etc that's the reason we need to queue all the call back function in call back queue so that they can get a chance one after the other to pushed into call stack for execution.
+->There will lot of setTimeout functions, addEvenetListeners etc that's the reason we need to queue all the call back function 
+in call back queue so that they can get a chance one after the other to pushed into call stack for execution.
 
 11. How fetch() function works
 ->it gives us access to make connection to the other servers(external severs).
