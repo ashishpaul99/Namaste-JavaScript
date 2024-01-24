@@ -185,8 +185,10 @@ console.log("End")
 ->When the timer get expires the call back function put in call back queue.
 
 7.2 Event loop
-->the job of event loop is to check call back queue and takes the call back function fron call back queue and puts in call stack.
-->Event loop is like a gate keeper. it checks the call back queue and if there is any function it puts it in call stack. exectuion context of call back function is pushed into call stack.
+->the job of event loop is to check call back queue and takes the call back function fron call back queue 
+and puts in call stack.
+->Event loop is like a gate keeper. it checks the call back queue and if there is any function it puts it in call stack. 
+exectuion context of call back function is pushed into call stack.
 
 
 |               |
