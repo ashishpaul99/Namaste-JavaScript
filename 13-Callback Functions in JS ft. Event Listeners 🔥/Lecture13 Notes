@@ -120,7 +120,7 @@ attachEventListeners();
 7. Garbage Collection & remove Event Listeners
 ->why event listeners are removed.
 ->event listeners are heavy.
-->Whenever a event listener is attached it formss a closure even call stack is empty.
+->Whenever a event listener is attached it formss a closure even though call stack is empty.
 ->that's the reasone event listeners are heavy.
 ->that's the reason event listeners are removed when we are not using them.
 ->if page has more event listeners then our page can go slow.
