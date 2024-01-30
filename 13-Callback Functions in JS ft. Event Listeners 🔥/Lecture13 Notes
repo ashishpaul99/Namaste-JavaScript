@@ -52,7 +52,9 @@ x(function y(){
 ->If any operation blocks the call stack that is called the blocking the main thread.
 ->main thread should not be blocked.
  ->we have to use asyn operations for the things whihc takes time like setTimeout function. 
-->if js does not have first class and we did not have call back functions then we could not pass this functions to another function then we could not have been do asynchronous operations.
+->if js does not have first class and we did not have call back functions then 
+we could not pass this functions to another function then we could not have been do 
+asynchronous operations.
 ->Using web api, setTimeout and the call function aynchronous operations can be achieved.
 
 
