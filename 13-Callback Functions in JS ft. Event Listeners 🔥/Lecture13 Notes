@@ -55,7 +55,7 @@ x(function y(){
 ->if js does not have first class function and call back functions then 
 we could not pass this functions to another function then we could not have been do 
 asynchronous operations.
-->Using web api, setTimeout and the call function aynchronous operations can be achieved.
+->Using web api, setTimeout and the call back function aynchronous operations can be achieved.
 
 
 5. Creating an Event Listeners in JavaScript
