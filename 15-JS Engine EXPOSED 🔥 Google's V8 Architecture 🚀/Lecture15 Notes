@@ -224,8 +224,8 @@ and tries to optimize it as much as it can and it also produces the byte code an
 
 // 14. Google's V8 JS Engine Architecture
 
-// js code ---> Syntax Parser -----> Abstract syntax tree-----> Interpreter(ignition)---->Compiler(TurboFan) ---->Optiized Machine code --->Byte Code  <--------------------------------------|
-
+// js code ---> Syntax Parser -----> Abstract syntax tree-----> Interpreter(ignition)---->Compiler(TurboFan) ---->Optiized Machine code --->Byte Code  <--- Interpreter (ignition)
+->see jsengine11 image
 
 // 1. js source code goes through the parser and it generates AST(Abstact Syntax Tree).
 // 2. AST goes through the ingintion interpreter.
@@ -245,14 +245,7 @@ and tries to optimize it as much as it can and it also produces the byte code an
 // ->garbage collector clear the space.
 // ->we also have optimizing techniques.
 
-
-
-
 // ->js enigne has 3 phases 
 // 1. Parsing
 // 2.compilation
 // 3. Execution
-
-
-
-
