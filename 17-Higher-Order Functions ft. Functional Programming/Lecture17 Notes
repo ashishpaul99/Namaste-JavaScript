@@ -3,7 +3,8 @@
 // 17-Higher-Order Functions ft. Functional Programming
 // Dt:05/02/24 Time:12:45PM
 // 1. What is Higher Order Functions?
-// 1. Higher Order function- A function which takes other function as an argument or returns a functions is known as higher order function.
+// 1. Higher Order function- A function which takes other function as an argument or returns a 
+      functions is known as higher order function.
 
 
 // 2. Code demonstration of Higher-Order Function
@@ -64,7 +65,7 @@
 // [6, 4, 10, 8, 2]
 
 // 4. Mistakes people make in a Coding Interview
-// ->What interviewer expects in coding roung.
+// ->What interviewer expects in coding round.
 // ->What is modular and reusable code?
 // ->How we can wirte it in function way.
 
@@ -113,14 +114,17 @@
 // ->we abstracted code into smaller function and it has it's own resposnsibility.
 // ->no repitation in code.
 // ->writing all the logic code into small resusable componenets which are functions.
-// -> Reusability, Modularity and Passing functions into different functions are crucial thing in functional programming.
-// ->functional programming deals with pure functions, composition of functions, reusability, modularity.
+// -> Reusability, Modularity and Passing functions into different functions are crucial thing 
+      in functional programming.
+// ->functional programming deals with pure functions, composition of functions, reusability, 
+     modularity.
 // ->In interview wirte code in this style and breaking logic into samller functional units.
 
 // 8. Pollyfil for map function in JavaScript
-// ->fuction calculate in above code is similar to function map.
+// ->function calculate in above code is similar to function map.
 // ->Map is very common higher order functuion.
-// ->map functions create an new iterate over each elements in radus arraya and returns the output
+// ->map functions create an new iterate over each elements in radus arraya and returns 
+     the output
 
 // const radius = [3, 2, 5, 4, 1];
 // const area = function (radius) {
@@ -144,6 +148,14 @@
 // 28.274333882308138,12.566370614359172,78.53981633974483,50.26548245743669,3.141592653589793
 // Normal function output:
 // 28.274333882308138,12.566370614359172,78.53981633974483,50.26548245743669,3.141592653589793
+
+// alter =>using map function
+// const radius=[1,2,3,4,5];
+// const area=function(radius){
+//    return Math.PI*radius*radius;
+// }
+// console.log("Area of circle using map function")
+// console.log(radius.map(area));
 
 // eg-2:
 // ->make calculate function exactly similar to map.
