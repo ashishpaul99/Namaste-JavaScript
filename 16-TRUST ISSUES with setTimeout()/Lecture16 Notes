@@ -3,7 +3,8 @@
 // ->setTimeout has trust issues.
 // ->a setTimeout function with certain time will not wait for that time exactly.
 // ->a settimeout function with time 5sec does not always exactly wait for 5 sec.
-// ->setTimeout does not guarentee that call back function will be called exactly after 5sec. it might take 6 or 10 sec. it all depends
+// ->setTimeout does not guarentee that call back function will be called exactly after 5sec.
+//->it might take 6 or 10 sec. it all depends on code.
 
 
 // 2. Why we have trust issues with setTimeout?
@@ -29,18 +30,24 @@
 // }, 5000);
 // console.log("End");
 // 1 million lines of code
-// ->Suppose there are million lines one code is present after console.log("End") line which takes to execute 10 sec.
-// ->In that case the global execution context still be busy executing this code for 10sec while the 5sec timer is running. the timer of setTimeout function expired long back.
+// ->Suppose there are million lines of code is present after console.log("End") line which 
+     takes to execute 10 sec.
+// ->In that case the global execution context still be busy executing this code for 10sec 
+     while the 5sec timer is running. the timer of setTimeout function expired long back.
 
-// ->while gec execution 1 million line of code the timer of setTimeout function expired long back. call back function already been pushed into call back queue.
-// ->now event loop is checking wheather call stack is empty or not. if call stack is empty then only it takes call back function from call stack queue put in call stack.
+// ->while gec execution 1 million line of code the timer of setTimeout function expired long 
+     back. call back function already been pushed into call back queue.
+// ->now event loop is checking wheather call stack is empty or not. if call stack is empty 
+     then only it takes call back function from call stack queue put in call stack.
 
-// ->call back function in cal stack queue get a chance after 10 sec to get chance for execution.
+// ->call back function in cal stack queue get a chance after 10 sec to get chance for 
+     execution.
 // ->Call back function waits till the whole js code will get executed.
 // ->this also knwon as concurrency model in js.
 // ->refer image setTimeout3
 
-// 7. After global execution context is popped out of call stack then even loop takes call back function from call back queeue and push it into  call stack.
+// 7. After global execution context is popped out of call stack then even loop takes call back
+      function from call back queue and push it into  call stack.
 // ->After 10 sec call back function pushed into call stack then
 // ->refer image setTimeout4
 // 8. now call back function gets chance to get executed and prints "Callback" on console.
@@ -66,7 +73,8 @@
 // While expires
 // Callback
 
-// ->first "Start" will be printed and then call back function will be registered. then "End" printed. now after 5ec "Callback" will be printed.
+// ->first "Start" will be printed and then call back function will be registered. 
+// ->then "End" printed. now after 5ec "Callback" will be printed.
 // ->use while loop for Simulating environment to block main thread.
 // ->a continous loop which will wait for 10 sec.
 // ->by using date api we can do it.
@@ -74,8 +82,9 @@
 // ->new date().getTime() gives exact time in mill sec.
 // ->this type of scenrio does not very often will seen in code.
 // ->we should never block main thread.
-// ->if we don't block out main thread that is where all call back functions get chance to get executed.
-//  ->That's how whole comcurrency model works in js.
+// ->if we don't block out main thread that is where all call back functions get chance to get 
+    executed.
+// ->That's how whole concurrency model works in js.
 // ->it just has one call stack.
 // ->thats why it is very fast.
 // ->it does not have to compile.
