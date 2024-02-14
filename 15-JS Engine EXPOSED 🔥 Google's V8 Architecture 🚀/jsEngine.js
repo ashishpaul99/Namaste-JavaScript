@@ -1,0 +1,246 @@
+// 1. Introduction
+// ->JavaScript runs in browser, server, smart watch, smart bulb, robots etc.
+// ->it is possible because Javascript runtime environement.
+
+// 2. JavaScript Runtime Environment
+// ->Javascript runtime environement is like a big container which has all the things required to javascript code.
+// ->it has JS engine.
+// ->it has set of API's to connect with the outer environement.
+// ->it also have event loop, call back queue, micro task queue in js runtime environement.
+// ->it is a container which has all the things to execute js code.
+// ->refer jsengine1 image.
+
+//  ____________________________________________
+// |                                            |
+// |                                            |
+// |   js  engine                               |
+// |    API                                     |
+// |   event   loop                             |
+// |   Micro task queue                         |
+// |   Call stack queue                         |
+// |____________________________________________|
+
+// 3. Browser and Node.js JS Runtime
+// ->js runtime environement is not possible with the js engine.
+// ->js engine is the heart of the js runtime environement.
+
+// 3.1 Browser
+// ->Browser will execute js code because it has javascript runtime environment.
+// ->every browser has javascript runtime environement.
+
+// 3.2 Node.js
+// ->Node.js will also have javscript run time
+// environement. it is the open source js runtime.
+// it has everything to run js code.
+// ->Node.js can run the js code outside the browser.
+// ->refer jsengine2 image.
+// ->these set of api gives access to super powers  which we can use inside js code.
+// ->refer jsengine3 image
+
+// ->Api's may be different in browser and node.js.
+// ->JS runtime environement inside the browser has an API local storage that give us accessing to local storge from our code.
+// ->in case of node.js it could be different.
+// ->there few api's with name which are present in browser and node.js.
+// eg-1:
+// setTimeout()
+// console
+
+// -> setTimeout() present in the runtime environement in the browser and node.js.
+// ->setTimeout() in browser looks exactly to node.js one. but internally they are implemented differently inside.
+// ->setTimeout of browser has different implementation  than the setTimeout of node.js.
+
+
+// ->console api present in runtime environement of the browser and Node.js.
+// ->there could be difffernet api's for browser and node.js.
+
+// ->similarly we can find all sort of api's in all sort of js runtime environement.
+// ->outer environement can be accessed by set of api's and run js code inside js runtime environement.
+
+// 4. List of JavaScript Engines
+// ->there are lot of js engine available.
+// ->google has js engine called v8.
+// ->microsoft edge has js engine called chakra.
+// ->we can create own js engine.
+// ->the most important protocal for the js engine is to follow standards.
+// ->there are ECMAScript standards which needs to be followed by the js engine.
+// ->ECMAScript is the governing body of the js langugage.
+// ->read about ECAMScript.
+
+// 5. First JS Engine ever created
+// ->first js engine is created by js founder himself.
+// ->his name is Brendan Eich.
+// ->he created first js engine when he is workking in netscape. it evolved a lot. now it is known as spider monkey.
+// ->which used in the firefox browser.
+
+
+// 6. Myths about JS Engine
+// ->js engine is not machine. 
+// ->js engine is normal program which is written in low level language.
+// ->google v8 engine is written inside c++.
+// ->that is again a piece of code written by engineers.
+// ->that piece of code(js engine) takes high level code which is witten in js code and splits out machine level code which can executed by the machine.
+// ->js engine is normal code. it is not a machine.
+
+
+// 7. JS Engine Architecture
+// ->js engine takes human readable or high level language code.
+// ->these code now goes to through three steps.
+// 1. Parsing
+// 2.Compilation
+// 3. Execution
+
+// ->these are the three major things happen inside the js engine.
+
+// Code ---> Parsing ---> Compilation ---> Execution
+
+
+// 8. Syntax Parsers and Abstract Syntax Tree
+// 1. Parsing
+// ->during the parsing phase the code which is written broken down into tokens.
+// eg-:
+// ->Broken into tokens.
+// let a=7; --->  let, a, =, 7, ;
+
+// 1.1 Syntax Parser
+// ->the job of the syntax parser is to take code and convert it into AST.
+// ->AST- Abstract Syntax Tree.
+// ->it basically generates whole big tree structure.
+// ->refer jsengine4 and jsengine5 Image.
+// ->now AST generated passed on to the compilation phase.
+// ->check AST
+
+// 9. Compilation & Execution of JS Code
+// ->compilation and execution hand in hand.
+// ->refer jsengine6
+
+
+// 10. Just In Time Compilation
+// ->js has Just In Time Compialtion(JIT).
+
+// 1. Interpreter
+// ->Interpreter takes code and starts executing code line by line.
+// ->it does not know what will happen in next line.
+// ->refer jsengine7 Image.
+
+// 2. Compiler
+// ->while other hand there are many programming languages which uses compiler to compile code.
+// ->In case of compiled language first whole code is compiled before executing and new code is formed which is optimised version of the source code.
+// ->refer jsengine8 image
+// ->optimized code runs fast and it has lot perfomance improvements.
+
+
+// 2.1 pro's of interpreter and compiler
+// ->Interpreter the code executes fast.
+// ->In case of compiler we have effiency.
+
+
+
+// 11. Is JavaScript Interpreted or Compiled Language?
+//-> JS behaves like interpreter and compiler language. 
+// ->it is depend on js engine.
+// ->When js was created it is interpreted language.
+// ->the js engine which he wrote using interpreter to execute the code. because it is usually run on browsers. browsers can't wait for code to compile and before running or execute everything.
+// ->it was interpreted language.
+// ->In todays world most of the modern js engine uses interpreter and compiler both together
+// ->now it depends on js engine wheather it is purely interpreted or just in time compile.
+
+// 11.1 JIT Compilation
+// ->JIT Compilation is best of the both world.
+// ->it uses interpreter and compiler to execute the code.
+// ->Compilation and execution goes hand in hand.
+// ->After parsing we gost AST. this AST now goes to the interpreter. 
+// ->now interpreter converts high level code to byte code and that code moves to the execution step.
+
+//                            JIT Compilation
+//Code---->Parsing---->AST---->Interpreter ---> AST =--> Execution
+//                                |
+//                                |
+//                            Compiler
+
+// 11.2 Job of Interpreter
+// ->Interpreter takes the compiler help to optimize the code. Compiler talks to  interpreter while the code is interpreted line by line. Compiler optimizes the code as much as it can. it can happen in multiple phases. all these js engines have their own algorithms of doing it.
+
+// 11.3 Job of Compiler
+// ->Compiler is to optimize the code as much as it can on the run time that is why it is known as JIT Compilation.
+
+
+// 11.4 AOT ->Ahead of time compilation
+// ->In some js engines there is something known as AOT(Ahead of time compilation).
+// ->In that case compiler takes the piece of code which is going to be executed later and tries to optimize it as much as it can and it also produces the byte code and goes through the execution phase.
+
+// ->Execution over here not possible with two major components in js engine. 
+// ->those two components are 
+// 1. memory heap
+// 2. call stack
+
+// ->refer jsengine9 image.
+
+
+// 1. Memory heap
+// ->this is where all the memory is stored.
+// ->Memory heap is constant sync with garbage collector, call stack lot of other things.
+// ->Memory heap is the space all the varaibles and functions are assign memory.
+
+
+// 2. Call stack
+// ->cal stack is present in js engine.
+// ->In which execution context poping in and poping out.
+
+
+// 12. Garbage Collector - Mark & Sweep Algorithm
+// ->it tries to free up memory space whenever possible like when a function is not used then it collected it.
+// ->it was like collecting garbage and sweeps it.
+// ->Read about Mark and sweep algorithm
+// ->it is widely used across the garbage collectors out there.
+// ->there are many forms of optimizations which a compiler does to code. those optimizations are 
+// 1. Inlining
+// 2. Copy elision
+// 2. Inline caching
+
+// ->refer jsengine10 image
+
+// ->Compilation logic inside the google v8 is very different from the spider monkey inside the fire fox.
+// ->every company want their js engine as fast as possible.
+
+// 13. Fastest JavaScript Engine
+// -> v8 js engine is fastest js engine at present.
+// -> Read v8 blog of googles js engine.
+// ->v8 has interpreter known as ignition.
+// ->Turbofan is the optimizing compiler in v8. it compiles the code very fast.
+// ->it also have garbage collector known as orinoco.
+// ->they also have other garbage collector knwon as oil pan.
+// ->ignition interpreter and turbofan compiler makes code to run very fast.
+
+// 14. Google's V8 JS Engine Architecture
+
+// js code ---> Syntax Parser -----> Abstract syntax tree-----> Interpreter(ignition)---->Compiler(TurboFan) ---->Optiized Machinecode --->Byte Code  <--------------------------------------|
+
+
+// 1. js source code goes through the parser and it generates AST(Abstact Syntax Tree).
+// 2. AST goes through the ingintion interpreter.
+// 3. interpreter converts the byte code. which is then executed.
+// 4. Along with the interpreter tubofan compiler works.
+// ->TuboFan compiler woks continously for optimizing code. it produces the optimized code(ByteCode) genertes the byte code which is then later executed.
+// ->this is how v8 js engine looks like.
+
+// 15. Quick Revision of JSRE & JS Engine
+// 1.Whenever js code runs it needs a container to run js code.
+// ->Browser has js run time environemnt.
+// ->js engine is the heart of js runtime environement.
+// ->js engine contains call stack.
+// ->js run time environement has api's, call back queue and micro task queue.
+// ->interpreter produces the byte code which is executed with help of memory heap and call stack.
+// ->Compiler optimized as much as possible.
+// ->garbage collector clear the space.
+// ->we also have optimizing techniques.
+
+
+
+
+// ->js enigne has 3 phases 
+// 1. Parsing
+// 2.compilation
+// 3. Execution
+
+// ->we 
+
