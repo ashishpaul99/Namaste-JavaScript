@@ -2,10 +2,10 @@
 Date: 21/01/24  Time:6:00 PM
 // 1. Introduction
 // ->JavaScript runs in browser, server, smart watch, smart bulb, robots etc.
-// ->it is possible because Javascript runtime environement.
+// ->it is possible because of Javascript runtime environement.
 
 // 2. JavaScript Runtime Environment
-// ->Javascript runtime environement is like a big container which has all the things required to javascript code.
+// ->Javascript runtime environement is like a big container which has all the things required to run javascript code.
 // ->it has JS engine.
 // ->it has set of API's to connect with the outer environement.
 // ->it also have event loop, call back queue, micro task queue in js runtime environement.
@@ -31,9 +31,9 @@ Date: 21/01/24  Time:6:00 PM
 // ->every browser has javascript runtime environement.
 
 // 3.2 Node.js
-// ->Node.js will also have javscript run time
-// environement. it is the open source js runtime.
-// it has everything to run js code.
+// ->Node.js will also have javscript run time environement. 
+// ->it is the open source js runtime.
+// ->it has everything to run js code.
 // ->Node.js can run the js code outside the browser.
 // ->refer jsengine2 image.
 // ->these set of api gives access to super powers  which we can use inside js code.
