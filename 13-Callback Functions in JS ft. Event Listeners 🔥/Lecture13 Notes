@@ -66,8 +66,8 @@ to it. JavaScript is a programming language that developers use to make interact
 ->on click it's call function.
 ->click button is picked and event listener is added to it.
 ->event listener is attached to buttons.
-->it call call the function after that even happens.
-->if event happens then call function automatically come into call stack.
+->it call the function after that even happens.
+->if event happens then call back function automatically come into call stack.
 
 eg-1:
 document.getElementById("clickMe").addEventListener("click",function click(){
@@ -126,6 +126,5 @@ attachEventListeners();
 ->if page has more event listeners then our page can go slow.
 ->So many closure sitting in memory of all there scopes and call backs.
 ->good practice to free up space 
-->when the event listeners are removed all the variables which are held by closure will garbage collected.
-
-
+->when the event listeners are removed all the variables which are held by closure will be collected
+by garbage collector.
