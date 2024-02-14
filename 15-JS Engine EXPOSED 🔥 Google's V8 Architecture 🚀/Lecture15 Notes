@@ -36,8 +36,8 @@ Date: 21/01/24  Time:6:00 PM
 // ->it has everything to run js code.
 // ->Node.js can run the js code outside the browser.
 // ->refer jsengine2 image.
-// ->these set of api gives access to super powers  which we can use inside js code.
-// ->refer jsengine3 image
+// ->these set of api gives access to super powers which we can use inside js code.
+// ->refer jsengine3 image.
 
 // ->Api's may be different in browser and node.js.
 // ->JS runtime environement inside the browser has an API local storage that give us accessing to local storge from our code.
@@ -53,7 +53,7 @@ Date: 21/01/24  Time:6:00 PM
 
 
 // ->console api present in runtime environement of the browser and Node.js.
-// ->there could be difffernet api's for browser and node.js.
+// ->there could be different api's for browser and node.js.
 
 // ->similarly we can find all sort of api's in all sort of js runtime environement.
 // ->outer environement can be accessed by set of api's and run js code inside js runtime environement.
@@ -65,13 +65,13 @@ Date: 21/01/24  Time:6:00 PM
 // ->we can create own js engine.
 // ->the most important protocal for the js engine is to follow standards.
 // ->there are ECMAScript standards which needs to be followed by the js engine.
-// ->ECMAScript is the governing body of the js langugage.
-// ->read about ECAMScript.
+// ->ECMAScript is the governing body of the js language.
+// ->read about ECAMAScript.
 
 // 5. First JS Engine ever created
 // ->first js engine is created by js founder himself.
 // ->his name is Brendan Eich.
-// ->he created first js engine when he is workking in netscape. it evolved a lot. now it is known as spider monkey.
+// ->he created first js engine when he is working in netscape. it evolved a lot. now it is known as spider monkey.
 // ->which used in the firefox browser.
 
 
@@ -128,7 +128,7 @@ Date: 21/01/24  Time:6:00 PM
 // ->while other hand there are many programming languages which uses compiler to compile code.
 // ->In case of compiled language first whole code is compiled before executing and new code is formed which is optimised version of the source code.
 // ->refer jsengine8 image
-// ->optimized code runs fast and it has lot perfomance improvements.
+// ->optimized code runs fast and it has lot of perfomance improvements.
 
 
 // 2.1 pro's of interpreter and compiler
@@ -141,7 +141,8 @@ Date: 21/01/24  Time:6:00 PM
 //-> JS behaves like interpreter and compiler language. 
 // ->it is depend on js engine.
 // ->When js was created it is interpreted language.
-// ->the js engine which he wrote using interpreter to execute the code. because it is usually run on browsers. browsers can't wait for code to compile and before running or execute everything.
+// ->the js engine which he wrote using interpreter to execute the code. because it is usually run on browsers. 
+// ->browsers can't wait for code to compile and before running or execute everything.
 // ->it was interpreted language.
 // ->In todays world most of the modern js engine uses interpreter and compiler both together
 // ->now it depends on js engine wheather it is purely interpreted or just in time compile.
@@ -150,7 +151,7 @@ Date: 21/01/24  Time:6:00 PM
 // ->JIT Compilation is best of the both world.
 // ->it uses interpreter and compiler to execute the code.
 // ->Compilation and execution goes hand in hand.
-// ->After parsing we gost AST. this AST now goes to the interpreter. 
+// ->After parsing we got AST. this AST now goes to the interpreter. 
 // ->now interpreter converts high level code to byte code and that code moves to the execution step.
 
 //                            JIT Compilation
@@ -160,7 +161,11 @@ Date: 21/01/24  Time:6:00 PM
 //                            Compiler
 
 // 11.2 Job of Interpreter
-// ->Interpreter takes the compiler help to optimize the code. Compiler talks to  interpreter while the code is interpreted line by line. Compiler optimizes the code as much as it can. it can happen in multiple phases. all these js engines have their own algorithms of doing it.
+// ->Interpreter takes the compiler help to optimize the code. 
+//->Compiler talks to  interpreter while the code is interpreted line by line. 
+//->Compiler optimizes the code as much as it can. 
+//->it can happen in multiple phases.
+//->all these js engines have their own algorithms of doing it.
 
 // 11.3 Job of Compiler
 // ->Compiler is to optimize the code as much as it can on the run time that is why it is known as JIT Compilation.
@@ -168,9 +173,10 @@ Date: 21/01/24  Time:6:00 PM
 
 // 11.4 AOT ->Ahead of time compilation
 // ->In some js engines there is something known as AOT(Ahead of time compilation).
-// ->In that case compiler takes the piece of code which is going to be executed later and tries to optimize it as much as it can and it also produces the byte code and goes through the execution phase.
+// ->In that case compiler takes the piece of code which is going to be executed later 
+and tries to optimize it as much as it can and it also produces the byte code and goes through the execution phase.
 
-// ->Execution over here not possible with two major components in js engine. 
+// ->Execution over here is possible with two major components in js engine. 
 // ->those two components are 
 // 1. memory heap
 // 2. call stack
@@ -194,6 +200,9 @@ Date: 21/01/24  Time:6:00 PM
 // ->it was like collecting garbage and sweeps it.
 // ->Read about Mark and sweep algorithm
 // ->it is widely used across the garbage collectors out there.
+
+
+13. Optmizations
 // ->there are many forms of optimizations which a compiler does to code. those optimizations are 
 // 1. Inlining
 // 2. Copy elision
@@ -204,7 +213,7 @@ Date: 21/01/24  Time:6:00 PM
 // ->Compilation logic inside the google v8 is very different from the spider monkey inside the fire fox.
 // ->every company want their js engine as fast as possible.
 
-// 13. Fastest JavaScript Engine
+// 14. Fastest JavaScript Engine
 // -> v8 js engine is fastest js engine at present.
 // -> Read v8 blog of googles js engine.
 // ->v8 has interpreter known as ignition.
@@ -215,7 +224,7 @@ Date: 21/01/24  Time:6:00 PM
 
 // 14. Google's V8 JS Engine Architecture
 
-// js code ---> Syntax Parser -----> Abstract syntax tree-----> Interpreter(ignition)---->Compiler(TurboFan) ---->Optiized Machinecode --->Byte Code  <--------------------------------------|
+// js code ---> Syntax Parser -----> Abstract syntax tree-----> Interpreter(ignition)---->Compiler(TurboFan) ---->Optiized Machine code --->Byte Code  <--------------------------------------|
 
 
 // 1. js source code goes through the parser and it generates AST(Abstact Syntax Tree).
