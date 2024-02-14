@@ -62,7 +62,7 @@
 
 // 2. Array.filter() function in JavaScript
 // ->filter function used to filter the values in array.
-// ->filter each and every elements whihc are grater than than 4 in an array
+// ->filter each and every elements which are grater than than 4 in an array
 // ->filetering even numbers in an array.
 // ->filtering the numbers whihc are divisible by 3.
 // ->array which has only values whihc are filtered based on logic.
@@ -111,11 +111,9 @@
 
 
 // 3. Array.reduce() function in JavaScript
-// ->it is used at a place where all elements of the array are taken and come up with single value out of them.
+// ->it is used at a place where all elements of the array are taken and come up with 
+     single value out of them.
 // ->In order to get single value out of multiple values reduce() function is used.
-
-
-
 
 // eg:
 //->finding sum of all the elements of the array.
@@ -161,11 +159,20 @@
 
 // console.log(output);//17
 
+or
+
+// const out=arr.reduce(function(sum,elem){
+//    sum=sum+elem;
+//    return sum;
+// },0)
+// console.log(out);
+
+
 
 // eg-8:find max number in array
 //7.1 Writing code in non functional way
 // const arr = [5, 1, 3, 2, 6];
-// const sum = function arraySum(arr) {
+// const max = function arrayMax(arr) {
 //     let max = 0;
 //     for (let i = 0; i < arr.length; i++) {
 //         if (arr[i] > max) {
@@ -191,6 +198,15 @@
 
 // Output:
 // 6
+
+//alter
+// const maxReduce=arr.reduce(function(max,element){
+//     if(element>max){
+//       max=element;
+//     }
+// },0)
+
+
 
 
 //eg-9: tricky map()
