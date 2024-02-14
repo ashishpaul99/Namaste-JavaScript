@@ -43,8 +43,8 @@
 
 //=>1.2 handling situations using promises
 // ->this type of situations are handled by promises
-// ->api's are designed in such a  way that this function will no longer callback functions 
-     but it just take some details.
+// ->api's are designed in such a  way that this function will no longer take callback 
+     functions but it just take some details.
 
 // eg-1:
 //->createOrder api will no longer take callback function but it will just take cart details 
@@ -75,7 +75,7 @@
 // ->this is the function available over the promise object.
 // ->callback function is attached to promise using "then" function.
 // ->once data is filled in promise object then callback function attached to promise object 
-     is automatically.
+     automatically.
 
 
 // eg-1: code with promises
@@ -139,6 +139,7 @@
 // const user = fetch(GITHUB_API);
 // console.log(user);
 
+=>code explaination
 // ->fetch() function returns a promise.
 // ->promise is captured in object user and pass github api in fetch function.
 // ->as soon line 125 executed promise object is retruned to user variable.
@@ -158,7 +159,7 @@
 // Promise {<pending>}
 // [[Prototype]]: Promise
 // [[PromiseState]]: "fulfilled"
-// [[PromiseResult]]: Respo
+// [[PromiseResult]]: Response
 
 // 6. Deep dive into Promise State
 // =>there are two things
@@ -177,7 +178,7 @@
 
 // eg:
 // 1.1 before line "const user = fetch(GITHUB_API);" executed the state of promise state is 
-   pending and result is undefined
+   pending and promise result is undefined
 // =>scope
 // user: Promise
 // [[Prototype]]    : Promise
@@ -188,14 +189,13 @@
 // Promise {<pending>}
 // [[Prototype]]: Promise
 // [[PromiseState]]: "fulfilled"
-// [[PromiseResult]]: Respo
+// [[PromiseResult]]: Response
 
 
 // ->once line "const user = fetch(GITHUB_API);" is executed fetch will return promise and 
      console log will log the promise.
 // eg:
 const GITHUB_API = "https://api.github.com/users/ashishpaul99"
-
 const user = fetch(GITHUB_API);
 console.log(user);
 
@@ -226,12 +226,8 @@ console.log(user);
 // ->after some point of time eventually data comes into promise object. then state of promise 
      changes to fullfilled and promise result changes to response from undefined.
 
-
-
-
-//// b. result of the promise
+// b. result of the promise
 // ->result will store whatever data fetch() method returns.
-
 
 
 // eg-2: Attaching call back function to promise
@@ -256,7 +252,7 @@ console.log(user);
 // ->we can do whatever we want in program.
 // ->promise object brings lot of trust in this transaction.
 // ->js resolve promise one time either it will be sucess or failure.
-// ->it can be fullfilled or refjected also.
+// ->it can be fullfilled or rejected also.
 // ->Promise objects are imutable.
 // ->we can pass data which is in promise in code.
 // ->no need to worry about someone mutate the data.
@@ -267,7 +263,7 @@ console.log(user);
 // ->Promise object is place holder for a cetain period of time until we receive a value from 
      asynchronus operation.
 //    or
-// ->The Promise object represents the eventual completion (or failure) of an asynchronous 
+// ->A promise is an object represents the eventual completion (or failure) of an asynchronous 
      operation and its resulting value.
 // ->a container for future value.
 // ->it has a value after promise is fullfilled.
