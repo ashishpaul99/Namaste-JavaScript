@@ -1,0 +1,108 @@
+// 16-TRUST ISSUES with setTimeout() 
+// 1. Introduction
+// ->setTimeout has trust issues.
+// ->a setTimeout function with certain time will not wait for that time exactly.
+// ->a settimeout function with time 5sec does not always exactly wait for 5 sec.
+// ->setTimeout does not guarentee that call back function will be called exactly after 5sec. it might take 6 or 10 sec. it all depends
+
+
+// 2. Why we have trust issues with setTimeout?
+// eg-1:refer setTimeout1 image
+// console.log("Start");
+// setTimeout(function cb() {
+//     console.log("Callback")
+// }, 5000);
+// console.log("End");
+
+// 1. When js code runs global execution context is created and pushed into call stack.
+// 2.now code run line by line. it prints "Start" on the console.
+// 3. at setTimeout() function it registers call back method over here into the web API environement and it also starts the timer of 5000ms.
+// 4. call back function waiting for it tutn to get executed once timer get expires.
+// 5. here js will not wait for setTimeout function. it just register the setTimeout and moves to next line. it executes next line.
+// 6. Now "End" prinited on console.
+
+
+// eg-2:
+// console.log("Start");
+// setTimeout(function cb() {
+//     console.log("Callback")
+// }, 5000);
+// console.log("End");
+// 1 million lines of code
+// ->Suppose there are million lines one code is present after console.log("End") line which takes to execute 10 sec.
+// ->In that case the global execution context still be busy executing this code for 10sec while the 5sec timer is running. the timer of setTimeout function expired long back.
+
+// ->while gec execution 1 million line of code the timer of setTimeout function expired long back. call back function already been pushed into call back queue.
+// ->now event loop is checking wheather call stack is empty or not. if call stack is empty then only it takes call back function from call stack queue put in call stack.
+
+// ->call back function in cal stack queue get a chance after 10 sec to get chance for execution.
+// ->Call back function waits till the whole js code will get executed.
+// ->this also knwon as concurrency model in js.
+// ->refer image setTimeout3
+
+// 7. After global execution context is popped out of call stack then even loop takes call back function from call back queeue and push it into  call stack.
+// ->After 10 sec call back function pushed into call stack then
+// ->refer image setTimeout4
+// 8. now call back function gets chance to get executed and prints "Callback" on console.
+
+// 3. Code demonstration of the setTimeout delay
+// eg-1: Simulating environment to block main thread.
+// console.log("Start");
+// setTimeout(function cb() {
+//     console.log("Callback");
+// }, 5000);
+// console.log("End");
+// let startDate = new Date().getTime();
+
+// // Blocking main thread for 10000ms
+// let endDate = startDate;
+// while (endDate < startDate + 10000) {
+//     endDate = new Date().getTime();
+// }
+// console.log("While expires");
+// Output:
+// Start
+// End
+// While expires
+// Callback
+
+// ->first "Start" will be printed and then call back function will be registered. then "End" printed. now after 5ec "Callback" will be printed.
+// ->use while loop for Simulating environment to block main thread.
+// ->a continous loop which will wait for 10 sec.
+// ->by using date api we can do it.
+// ->new date gives current date and time.
+// ->new date().getTime() gives exact time in mill sec.
+// ->this type of scenrio does not very often will seen in code.
+// ->we should never block main thread.
+// ->if we don't block out main thread that is where all call back functions get chance to get executed.
+//  ->That's how whole comcurrency model works in js.
+// ->it just has one call stack.
+// ->thats why it is very fast.
+// ->it does not have to compile.
+// ->it has just in time compilation.
+
+// 4. Discussion about setTimeout(0)
+// ->delaying a function for zero seconds.
+// ->even time is 0ms the timer should go through that queue.
+// ->setTimeout function will register a call back on web API environment.
+// ->thought the timer expired long back it moves into call back queue once call stack is empty.
+// ->when gec is executed and poped out of the call stack then only call back function will get executed.
+
+// eg-1:
+console.log("Start");
+setTimeout(function cb() {
+    console.log("Callback");
+}, 0);
+console.log("End");
+
+// Output:
+// Start
+// End
+// Callback
+
+// ->In order to defer few piece of code we use setTimeout function with 0ms.
+
+// 5. Set up practice playground on the local system
+// 1. vs code
+// 2.chrome
+
