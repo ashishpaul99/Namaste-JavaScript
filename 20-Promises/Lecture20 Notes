@@ -13,7 +13,8 @@
 
 
 // createOrder - takes the cart item and will return us order details.
-// ->it will create a order in database and it will create order id. order id is returned by createOrder api.
+// ->it will create a order in database and it will create order id. order id is returned by 
+     createOrder api.
 
 // ->proceedToPayment(orderId) -> it takes order id and proceed to payment page.
 // ->createOrder(cart) and proceedToPayment(orderId) api's are asynchronous.
@@ -21,7 +22,8 @@
 // ->call backs are used to handle this situations.
 // ->api's are wrapped in function and pass to other function as call back functions.
 
-// ->it is reposiblity of createOrder api to create and then call proceedToPayment callback function once the order is created with order id.
+// ->it is reposiblity of createOrder api to create and then call proceedToPayment callback 
+     function once the order is created with order id.
 
 // ->this how async operations are handled using callbacks
 // ->there is very important issue with this code.
@@ -31,7 +33,8 @@
 // ->we have passed proceedToPaument callback function to createOrder api and we are expecting  order is created and then call proceedToPaument callback function once the order is created with order id.
 // ->what if it never calls callback function?
 // ->what if it may calls twice?
-// ->createOrder api may be in some other service, can be written by some developer, team or intern.
+// ->createOrder api may be in some other service, can be written by some developer, team or 
+     intern.
 // ->we can't blindly trust this api's. it is risky
 // ->passing callback function like this isn't realiable.
 // ->we are giving control of our program to other part of our code which we are not aware of.
@@ -40,10 +43,12 @@
 
 //=>1.2 handling situations using promises
 // ->this type of situations are handled by promises
-// ->api's are designed in such a  way that this function will no longer callback functions but it just take some details.
+// ->api's are designed in such a  way that this function will no longer callback functions 
+     but it just take some details.
 
 // eg-1:
-//->createOrder api will no longer take callback function but it will just take cart details and it will return us promise.
+//->createOrder api will no longer take callback function but it will just take cart details 
+    and it will return us promise.
 // ->promise is captured or collected in variable
 
 // const promise = createOrder(cart);
@@ -52,11 +57,14 @@
 // ->Assume promise as just like empty object with data value in it.
 // {data:value}
 // ->data hold whatever createOrder returns.
-// ->createOrder api is async operation. it will take some time to execute. we don't know how much time it will take. as soon as it is executed it will return object with a data which is udenfined property or value.
+// ->createOrder api is async operation. it will take some time to execute. we don't know how 
+     much time it will take. as soon as it is executed it will return object with a data which 
+     is udenfined property or value.
 // =>{data:undefined}
 // ->undefined means empty value.
 
-// ->after sometime it will create an order and it will return order details and fill object at later point of time.
+// ->after sometime it will create an order and it will return order details and fill object 
+     at later point of time.
 // =>{data:orderDetails}
 
 
@@ -66,13 +74,16 @@
 // ->now "then" function is used over promise.
 // ->this is the function available over the promise object.
 // ->callback function is attached to promise using "then" function.
-// ->once data is filled in promise object then callback function attached to promise object is automatically.
+// ->once data is filled in promise object then callback function attached to promise object 
+     is automatically.
 
 
 // eg-1: code with promises
 // const promise = createOrder(cart);
 //{data:undefined}    ->when above line is executed
-//{data:orderDetails} ->After some time order created and exact data will be filled in promise object.
+//{data:orderDetails} ->After some time order created and exact data will be filled in promise 
+  object.
+
 // promise.then(function (orderId) {
 //     proceedToPayment(orderId);
 // });
@@ -90,7 +101,8 @@
 // ->code with promises is lot better than code without promises.
 // 1. Callbacks
 // ->Passing a function
-// ->In case of code with callback or (without promises) callback function is passed to another function as an argument and blindly trusting on that function(createOrder api).
+// ->In case of code with callback or (without promises) callback function is passed to another
+     function as an argument and blindly trusting on that function(createOrder api).
 // ->createOrder api will call whenever it wants.
 
 
@@ -101,10 +113,12 @@
 // ->In this case we have control of program with us.
 // ->createOrder api will only do it's job.
 // ->it create an order and it will fill the promise object with the data(orderId).
-// ->as soon as this promise object fill with the data it will automatically call callback function back.
+// ->as soon as this promise object fill with the data it will automatically call callback 
+     function back.
 
 // 4. Importance of Promises
-// ->Promises gives trust that it will call callback function whenever there is data inside promise object.
+// ->Promises gives trust that it will call callback function whenever there is data inside 
+     promise object.
 // ->Promises handles these type of issues beautifully below
 // ->what if it never calls callback function?
 // ->what if it may calls twice?
@@ -162,7 +176,8 @@
 
 
 // eg:
-// 1.1 before line "const user = fetch(GITHUB_API);" executed the state of promise state is pending and result is undefined
+// 1.1 before line "const user = fetch(GITHUB_API);" executed the state of promise state is 
+   pending and result is undefined
 // =>scope
 // user: Promise
 // [[Prototype]]    : Promise
@@ -176,7 +191,8 @@
 // [[PromiseResult]]: Respo
 
 
-// ->once line "const user = fetch(GITHUB_API);" is executed fetch will return promise and console log will log the promise.
+// ->once line "const user = fetch(GITHUB_API);" is executed fetch will return promise and 
+     console log will log the promise.
 // eg:
 const GITHUB_API = "https://api.github.com/users/ashishpaul99"
 
@@ -190,7 +206,8 @@ console.log(user);
 // [[PromiseResult]]: Response
 
 
-//->After line "console.log(user)"  it is logging pending and after some time promise state changes to fullfilled.
+//->After line "console.log(user)"  it is logging pending and after some time promise state
+    changes to fullfilled.
 // Promise {<pending>}
 // [[Prototype]]: Promise
 // [[PromiseState]]: "fulfilled"
@@ -198,11 +215,16 @@ console.log(user);
 
 // =>why promise promise state is pending and fullfilled after line console.log(user).
 
-// ->At line console.log(user) the promise object is in pending state. js engine will not wait for anything it executes quickly.
+// ->At line console.log(user) the promise object is in pending state. js engine will not wait 
+     for anything it executes quickly.
 
-// ->At line "const user = fetch(GITHUB_API);" fetch returns a promise and it is in pending state. it take sometime to get the data and fill it back to get fullfill.
-// ->js will not wait for excution of fetch() function it goes to nextline. that why it shows promise is pending. it goes and prints console log into the console. that why promise is pending.
-// ->after some point of time eventually data comes into promise object. then state of promise changes to fullfilled and promise result changes to response from undefined.
+// ->At line "const user = fetch(GITHUB_API);" fetch returns a promise and it is in pending 
+     state. it take sometime to get the data and fill it back to get fullfill.
+// ->js will not wait for excution of fetch() function it goes to nextline. that why it shows 
+     promise is pending. it goes and prints console log into the console. that why promise is 
+     pending.
+// ->after some point of time eventually data comes into promise object. then state of promise 
+     changes to fullfilled and promise result changes to response from undefined.
 
 
 
@@ -242,9 +264,11 @@ console.log(user);
 
 //7. Promise Interview Question
 // 1. What is promise?
-// ->Promise object is place holder for a cetain period of time until we receive a value from asynchronus operation.
+// ->Promise object is place holder for a cetain period of time until we receive a value from 
+     asynchronus operation.
 //    or
-// ->The Promise object represents the eventual completion (or failure) of an asynchronous operation and its resulting value.
+// ->The Promise object represents the eventual completion (or failure) of an asynchronous 
+     operation and its resulting value.
 // ->a container for future value.
 // ->it has a value after promise is fullfilled.
 
@@ -297,13 +321,18 @@ createOrder(cart).then(function (orderId) {
 });
 
 // ->createOrder api turns into promise.
-// ->after proceeding to payments we have to show order summary by attacing another call back function to promise object.
+// ->after proceeding to payments we have to show order summary by attacing another call back 
+     function to promise object.
 
 // 9. Common mistake while Promise Chaining
 // ->In promise chaining we use then function. the data is piped in promise chaining.
 // ->we want data to flow in the whole chain.
-// ->response of create order pass into proceedToPayment() function and resposne of proceedToPayment() function  passed to showOrderSummary() function and response of showOrderSummary() function down the chain.
-// ->we always return a promise from in promise when we are chaining it. that's when will get data properly. 
+// ->response of create order pass into proceedToPayment() function and resposne of 
+     proceedToPayment() function  passed to showOrderSummary() function and response of 
+     showOrderSummary() function down the chain.
+// ->we always return a promise from in promise when we are chaining it. that's when will get
+     data properly. 
+
 //1. lot times we forget write return statements while using promise chainig.
 // eg:
 createOrder(cart).then(function (orderId) {
@@ -330,9 +359,13 @@ createOrder(cart).then(orderId => proceedToPayment(orderId))
 
 // 10. Recap of the
 //->How we can handle async code using callback.
-// ->While using callback we come across inversion of control issue. when we are passing a function indside other function. control of code give to someother api.
+// ->While using callback we come across inversion of control issue. when we are passing a 
+     function indside other function. control of code give to someother api.
 // ->inversion of control is handled by promises.
-// ->Promise object is eventually filled with result of aync operation and we don't pass any function to other function but we attach a callback functio to promise object. whenever data is inside promise object or promise is resolved then callback function automatically called by promises.
+// ->Promise object is eventually filled with result of aync operation and we don't pass any 
+     function to other function but we attach a callback functio to promise object. whenever 
+     data is inside promise object or promise is resolved then callback function automatically
+     called by promises.
 // ->promises give guarantee and trust in whole transaction.
 // ->promise is resolved just onece.
 // ->promises have three states
