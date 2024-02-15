@@ -1,0 +1,523 @@
+// 22-Promise APIs + Interview Questions  Dt:15/02/24 time:3:34 PM
+
+// 1. Introduction to JavaScript Promise APIs
+
+// Promise API's - there are four promise API's which are majorly important.
+// 1. Promise.all()
+// 2. Promise.allSettled()
+// 3. Promise.race()
+// 4. Promise.any()
+
+// ->they are helpful to build large prjects.
+// ->they take array of promises as input.
+
+
+// 2. Understanding Promise.all for concurrent operations
+// 1. Promise.all() -
+// ->it is used to handle multiple promises together.
+// ->it takes array of promises as an input.
+// ->in documentation it is iterable.
+// ->Array is an iterable.
+// ->there are multiplt iterable in js.
+// ->suppose if we have to make parallel API calls and get result.
+
+// eg-1:
+// ->In order get user names of all group of people in one go.
+
+// eg-2:it makes three parallel api calls and get the result.
+
+// case-1: All API calls are successful
+
+// Promise.all([p1, p2, p3]) ---->  [val1, val2, val3]
+
+// ->suppose p1, p2 and  p3 takes 3s, 1s and 2s.
+// ->val1, val2 and val3 are results of p1, p2 and p3.
+// ->it will make three parallel api calls and waits for all of them to finish.
+// ->in this case the output will be an with the result of all these promises.
+// ->API call is made.
+// ->results are collected in array.
+// ->this array is given back
+// ->the promise.all api will return array with value of these results.
+
+
+// 3. Promise.all Failure case
+// case-2:What if one of the promises get rejected.
+
+// Promise.all([p1, p2, p3]) ---->  ERORR(erorr thrown by p2)
+
+// ->suppose p1, p2 and  p3 takes 3s, 1s and 2s.
+// ->after 1 sec p2 get rejected.
+// ->Immediately as soon as any of the promise get rejected the promise.all API will through an erorr or returns erorr.
+// ->after 1 sec erorr is thrown.
+// ->it will not wait for other promises p1 and p3 whather they are successful or rejected but immediately it throws an error.
+// ->execution of promises cannot be cancelled.
+// ->promise.all will also be failure.
+// ->Whatever error it will get fomr rejected promise it will through the same error.
+// ->Promise.all throughs error which tis thrown by p3.
+
+
+// case-2.1
+// ->suppose p1, p2 and  p3 takes 3s, 1s and 2s takes to retrun.
+//->if p3 get rejected then after 2sec Promise.all api get rejected.
+// ->it throws an error after 2sec.
+
+
+
+//3.1 Important points on Promise.all API
+// ->execution of promises cannot be cancelled.
+// ->if all promises are success fully returned it will give results.
+// ->if one of them fails the whole collection promises fails.
+// ->it will not wait for other promises to get successful or rejected.
+// ->Promise.all is  fail fast.
+// ->even one promise is rejected or failed it quickly throws error.
+
+// 4. Exploring Promise.allSettled for comprehensive promise handling
+// ->What if we need results from successful promises by not caring rejected promises then promise.allSettled() API is used.
+
+
+// case-1: if All API calls are successful
+// Promise.allSettled([p1,p2,p3]) --> [val1,val2,val3]
+
+// p1->3s (successful)
+// p2->1s (successful)
+// p3->2s (successful)
+
+// ->suppose p1, p2 and  p3 takes 3s, 1s and 2s takes to retrun.
+// ->after 3sec promise.allSettle API gives results.
+
+// case-2: What if one of the promises get rejected
+
+// Promise.allSettled([p1,p2,p3]) --> [val1, err2, val3]
+
+// p1->3s (successful)
+// p2->1s (failed)
+// p3->2s (successful)
+
+
+// ->if p2 get rejected then api waits for all promises to get settled wheather promises are successful or rejected it promise.
+
+// ->allSettle will wait for all promises to get returned.
+// ->after 1 sec p2 get failed. Promise.allSettle throws error after 3 sec.
+// ->after 2 sec p3 result will be given.
+// ->afeter 3 sec p1 results will be given.
+
+//4.1 Difference between Promise.all and Promise.allSettle
+
+// a. Promise.all is  fail fast.
+// ->even one promise is rejected or failed it quickly throws error.
+
+// b. In Promise.allSettle it will waits for all the result then it performs action accordingly.
+// ->there are different use cases to use Promise.all and Promise.allSettle.
+
+
+// 5. Implementing Promise.race for optimized execution
+// 1. Promise.race()
+// ->it will give the value or resuilt of the first settled promise.
+// ->success or failer it doesn't matter but it returns result of the first settled promise.
+
+// case-1: promise was resolved
+// Promise.race([p1,p2,p3]) -----> [val2]
+
+// p1->3s
+// p2->1s
+// p3->2s (successful or resolved)
+
+// ->the promise which settled first will be the winner.
+// ->suppose p1, p2 and  p3 takes 3s, 1s and 2s takes to return.
+// ->after 1sec it will result of p2(val2).
+// ->after 1sec result whatever p2 will have it will give.
+
+// eg-2:
+// Promise.race([p1,p2,p3]) ----> [val3]
+
+// p1->3s
+// p2->5s
+// p3->2s (successful or resolved)
+
+// ->suppose p1, p2 and  p3 takes 3s, 5s and 2s takes to return
+// ->whatever promise settles first then you will get result of that promise.
+// ->In this case p3 will settle in 2 sec and result of p3 will be given.
+
+
+// case-2:what if one of the promise got rejected.
+
+// Promise.race([p1,p2,p3]) ----> ERORR(erorr thrown by p3)
+
+// p1->3s
+// p2->5s
+// p3->2s (failed or not successful)
+
+// ->suppose p1, p2 and  p3 takes 3s, 5s and 2s takes to return.
+// ->What if p3 fails after 2 sec?
+// ->p3 throughs erorrs.
+// ->error will thrown.
+// ->it will return first settled promise.
+// ->first promise whatever is resolved in that array wheather it is success or failure it will returns the results or throw the erorr.
+// ->it will not wait for other promises to get settled.
+
+// 6. Managing promise resolution with Promise.any
+// Promise.any()
+// ->it takes array of promises or list of promises.
+// ->it is very much similar to race.
+// ->it is like success seeking race.
+// ->it waits for first promise to get resolved or settled.
+// ->it waits for the first success and ignore all the failure and if all promises failed then it will collect all the errors and gives the aggregate error(whihc is array of all the three errors).
+
+// case-1: first promise get resolved
+// Promise.race([p1,p2,p3]) ---->[val2]
+
+// p1->3s
+// p2->1s (successful)
+// p3->2s
+
+// ->suppose p1, p2 and  p3 takes 3s, 1s and 2s to get settled.
+// ->p2 will be settled after 1 sec and it returns the result or value.
+
+// case-2: What if p2 get rejected after 1 sec.
+
+// Promise.race([p1,p2,p3]) ---->[ ]
+
+// p1->3s
+// p2->1s (not successful)
+// p3->2s (Promise.any() moves to p3)
+
+// ->suppose p1, p2 and  p3 takes 3s, 1s and 2s takes to get settled.
+// ->if p2 got rejected then promise.any() will wait for the success.
+// ->it is like success seeking race.
+// ->it is kind a race when it is successful it will return the result.
+
+// case-2: What if p2 get rejected after 1 sec and p3 is successful.
+
+// Promise.race([p1,p2,p3]) ---->[val3]
+
+// p1->3s
+// p2->1s(not succesful)
+// p3->2s(successful)
+
+// ->suppose p1, p2 and  p3 takes 3s, 1s and 2s takes to get settled.
+// ->if p2 got rejects after 1sec and p3 is successful after 2sec then result of p3 is returned.
+
+
+// case-3: What if p2 and p3 are rejected after 1 sec and 2 sec and p1 is resolved.
+
+// Promise.race([p1,p2,p3]) ---->[val1]
+
+// p1->3s
+// p2->1s (not succesful)
+// p3->2s (not succesful)
+
+// ->suppose p1, p2 and  p3 takes 3s, 1s and 2s takes to get settled.
+// ->if p2 and p3 are rejected after 1 sec and 2 sec the p1 value will be returned.
+// ->Basically it waits for the first success.
+
+// case-4: What if all promises are rejected or failed?
+
+// Promise.race([p1,p2,p3]) ---->[val1]
+
+// p1->3s (failed)
+// p2->1s (failed)
+// p3->2s (failed)
+
+// ->if all promises are rejected or failed then result will be aggregate error.
+// ->aggregate error will array of all the three errors.
+
+
+// 6.1 Difference between Promise.race() and Promise.any()
+// ->Promise.race() will give the value or resuilt of the first settled promise.
+
+// ->Promise.any() waits for the first success and ignore all the failure and if all promises failed then it will collect all the errors and gives the aggregate error.
+
+
+// 7. Revision of all the Promise APIs
+// 1. Promise.all()
+// ->if all of the promises are successful then it will return result of all the promises.
+// ->see Image PromiseAPI1
+
+// Promise.allSettled([p1,p2,p3]) --> [val1, val2, val3]
+
+// ->it will wait for all the api calls to finish.
+// ->if any one of the fails it will not move ahead and it throughs error.
+// ->see image PromiseAPI2
+// Promise.allSettled([p1,p2,p3]) --> [ERROR]
+
+// ->it will just quickly returns the result.
+// ->it is also like fail fast.
+
+// =>Promise.all() use case
+// ->When result of all the promises is need or don't need any of them if one of them resulted failed.
+
+// 2. Promisea.allSettle()
+// ->if all of the promises are successful then it will return result of all the promises.
+// ->it is the safest option.
+// ->see image PromiseAPI3
+
+// Promise.allSettled([p1,p2,p3]) --> [val1, val2, val3]
+
+//->if any one of the fails it will still wait for all the API calls to finish and then we will get values of all the promises.
+
+// Promise.allSettled([p1,p2,p3]) --> [val1, err2, val3]
+
+// 3. Promise.race()
+// ->success or failer it doesn't matter but it returns result of the first settled promise.
+// ->see image PromiseAPI4
+
+// 4. Promise.any()
+// ->it will return the first settle or resolved promise.
+// ->if first settle promise fails it will wait for the next promise.
+// ->it is success seeking api.
+// ->it ignores the failure.
+// ->see Image Promise.any() API.
+
+// 8. Code Examples of Promise.all()
+
+// eg-1: all promises are resolved
+// p1->3sec (success)
+// p2->1sec (success)
+// p3->2sec (success)
+
+// const p1=new Promise((resolve,reject)=>{
+//     setTimeout(()=>resolve("p1 success"),3000)
+// })
+// const p2=new Promise((resolve,reject)=>{
+//     setTimeout(()=>resolve("p2 success"),1000)
+// })
+// const p3=new Promise((resolve,reject)=>{
+//     setTimeout(()=>resolve("p3 success"),2000)
+// })
+
+// Promise.all([p1,p2,p3]).then(res=>{
+//     console.log(res);
+// })
+
+// Output: Output will be see after 3sec
+//  ['p1 success', 'p2 success', 'p3 success']
+
+// ->p1,p2 and p3 can be api calls.
+
+// eg-2: What if one the promise failed?
+// ->failng p2
+// ->after 1 sec it will through an error.
+
+
+// const p1 = new Promise((resolve, reject) => {
+//     setTimeout(() => resolve("p1 success"), 3000)
+// })
+// const p2 = new Promise((resolve, reject) => {
+//     setTimeout(() => reject("p2 fail"), 1000)
+// })
+// const p3 = new Promise((resolve, reject) => {
+//     setTimeout(() => resolve("p3 success"), 2000)
+// })
+
+// Promise.all([p1, p2, p3]).then(res => {
+//     console.log(res);
+// })
+
+// Output:
+// Uncaught (in promise) p2 fail
+
+// =>handling error in above code
+// ->it is an uncaught error. writing above code with catch.
+// ->we should never have uncaught error in code.
+// ->error which is not aware or handled.
+// ->before browser catches error we shoul catch those errors.
+
+// eg:
+// const p1 = new Promise((resolve, reject) => {
+//     setTimeout(() => resolve("p1 success"), 3000)
+// })
+// const p2 = new Promise((resolve, reject) => {
+//     setTimeout(() => reject("p2 fail"), 1000)
+// })
+// const p3 = new Promise((resolve, reject) => {
+//     setTimeout(() => resolve("p3 success"), 2000)
+// })
+
+// Promise.all([p1, p2, p3])
+// .then((res)=>{
+//     console.log(res);
+// }).catch((err)=>{
+//     console.error(err);
+// })
+
+// alter
+
+// Promise.all([p1, p2, p3])
+// .then(function (res) {
+//         console.log(res);
+// }).catch(function(err){
+//     console.error(err);
+// })
+
+// Output:
+// p2 fail
+
+
+// 9. Code Examples of Promise.allSettled()
+// ->if all of the promises are successful then it will return result of all the promises.
+//->if any one of the fails it will still wait for all the API calls to finish and then we will get values of all the promises.
+
+// eg-1: all promises are resolved
+// const p1 = new Promise((resolve, reject) => {
+//     setTimeout(() => resolve("p1 success"), 3000)
+// })
+// const p2 = new Promise((resolve, reject) => {
+//     setTimeout(() => resolve("p2 success"), 1000)
+// })
+// const p3 = new Promise((resolve, reject) => {
+//     setTimeout(() => resolve("p3 success"), 2000)
+// })
+
+// Promise.allSettled([p1, p2, p3])
+// .then((res)=>{
+//     console.log(res);
+// }).catch((err)=>{
+//     console.error(err);
+// })
+
+// Output:
+// (3) [{…}, {…}, {…}]
+// 0: {status: 'fulfilled', value: 'p1 success'}
+// 1: {status: 'fulfilled', value: 'p2 fail'}
+// 2: {status: 'fulfilled', value: 'p3 success'}
+// length: 3
+
+
+// eg-2: one of the promise rejected
+// const p1 = new Promise((resolve, reject) => {
+//     setTimeout(() => resolve("p1 success"), 3000)
+// })
+// const p2 = new Promise((resolve, reject) => {
+//     setTimeout(() => reject("p2 fail"), 1000)
+// })
+// const p3 = new Promise((resolve, reject) => {
+//     setTimeout(() => resolve("p3 success"), 2000)
+// })
+
+// Promise.allSettled([p1, p2, p3])
+// .then((res)=>{
+//     console.log(res);
+// }).catch((err)=>{
+//     console.error(err);
+// })
+
+// Output:
+// (3) [{…}, {…}, {…}]
+// 0: {status: 'fulfilled', value: 'p1 success'}
+// 1: {status: 'rejected', reason: 'p2 fail'}
+// 2: {status: 'fulfilled', value: 'p3 success'}
+// length: 3
+
+
+// 10. Code Examples of Promise.race()
+// // 3. Promise.race()
+// ->success or failer it doesn't matter but it returns result of the first settled promise.
+// ->see image PromiseAPI4
+
+// eg-1:
+// const p1 = new Promise((resolve, reject) => {
+//     setTimeout(() => resolve("p1 success"), 3000)
+// })
+// const p2 = new Promise((resolve, reject) => {
+//     setTimeout(() => reject("p2 fail"), 1000)
+// })
+// const p3 = new Promise((resolve, reject) => {
+//     setTimeout(() => resolve("p3 success"), 2000)
+// })
+
+// Promise.race([p1, p2, p3])
+//     .then((res) => {
+//         console.log(res);
+//     }).catch((err) => {
+//         console.error(err);
+//     })
+
+// Output:
+// p2 fail
+
+
+// 11. Interview Questions + Difference between settle, resolve, reject, fulfillled
+// ->know the lingo to explain in the interviews.
+// 1. Promise is settled means got the result.
+// ->settled can be either it can be resolved or rejected. 
+// ->it is either success or failure.
+// ->it can either be fullfilled or rejected.
+
+// 12. Code Examples of Promise.any()
+//=>Promise.any()
+// ->it will return the first settle or resolved promise.
+// ->if first settle promise fails it will wait for the next promise.
+
+// eg-1: two of the promises were rejected
+// const p1 = new Promise((resolve, reject) => {
+//     setTimeout(() => reject("p1 fails"), 3000)
+// })
+// const p2 = new Promise((resolve, reject) => {
+//     setTimeout(() => resolve("p2 success"), 5000)
+// })
+// const p3 = new Promise((resolve, reject) => {
+//     setTimeout(() => reject("p3 fails"), 2000)
+// })
+
+// Promise.any([p1, p2, p3])
+//     .then((res) => {
+//         console.log(res);
+//     }).catch((err) => {
+//         console.error(err);
+//     })
+
+// Output:
+// p2 success
+
+// ->after 5 sec we will see p2 success.
+// ->it will wait for success.
+
+// eg-2: if all promises are failed
+// const p1 = new Promise((resolve, reject) => {
+//     setTimeout(() => reject("p1 fails"), 3000)
+// })
+// const p2 = new Promise((resolve, reject) => {
+//     setTimeout(() => reject("p2 fails"), 5000)
+// })
+// const p3 = new Promise((resolve, reject) => {
+//     setTimeout(() => reject("p3 fails"), 2000)
+// })
+
+// Promise.any([p1, p2, p3])
+//     .then((res) => {
+//         console.log(res);
+//     }).catch((err) => {
+//         console.error(err);
+//     })
+
+
+// Output:
+// AggregateError: All promises were rejected
+
+// ->AggregateError is collection all errors.
+// ->all errors are stored in an array.
+
+
+// 12.1 Handling AggregateErorr
+
+// eg-1:
+const p1 = new Promise((resolve, reject) => {
+    setTimeout(() => reject("p1 fails"), 3000)
+})
+const p2 = new Promise((resolve, reject) => {
+    setTimeout(() => reject("p2 fails"), 5000)
+})
+const p3 = new Promise((resolve, reject) => {
+    setTimeout(() => reject("p3 fails"), 2000)
+})
+
+Promise.any([p1, p2, p3])
+    .then((res) => {
+        console.log(res);
+    }).catch((err) => {
+        console.error(err);
+        // it will create array errors
+        // ->in this error all the aggregate errors are stored.
+        // ->it will give the errors in the form of list.
+        console.log(err.errors);
+    })
