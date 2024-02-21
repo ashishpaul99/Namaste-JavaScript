@@ -23,7 +23,8 @@
 // 2.2 How it is different from normal function?
 // ->this async function always returns a promise.
 // ->by property of an async function it always returns promise.
-// ->if not promise value is returned then the value is wrapped in promise and then promise will be returned.
+// ->if not promise value is returned then the value is wrapped in promise and then promise 
+     will be returned.
 // ->In any case it returns a promise.
 // eg-1: returning a promise
 // const pr = new Promise(function (resolve, reject) {
@@ -130,8 +131,10 @@
 // ->resolving promise after sometime
 // ->In this case Namaste Javascript prints first then setTimeout function executes after 10sec.
 // ->In this case js will not wait for promise to resolved but it moves to next line.
-// ->as soon as the handlePromise() function executed it will resgister promise and takes call back funtion and keep it seperately till it is resolved.
-// js engine will not wait for promise to resolved it moves to the next line and it prints "Namaste Javascript"
+// ->as soon as the handlePromise() function executed it will resgister promise and takes 
+    call back funtion and keep it seperately till it is resolved.
+// js engine will not wait for promise to resolved it moves to the next line and it prints 
+   "Namaste Javascript"
 // once promise is resolved it will log of resolved value which is in setTimeout function.
 
 
@@ -180,9 +183,11 @@
 
 
 // 4. Diving deep into async/await
-// ->In this case after 10sec "Namaste Javascript" prints first then  Promise is resolved printed.
+// ->In this case after 10sec "Namaste Javascript" prints first then  Promise is resolved 
+     printed.
 // ->code waiting at await p until promise get resolved.
-// -> js engine was waiting for promise to resolved and it will go to the next line only after 10sec once await get value.
+// -> js engine was waiting for promise to resolved and it will go to the next line only after
+      10sec once await get value.
 // ->In this case js will wait for promise to get resolved then it goes to the next line.
 
 // eg-1:
@@ -206,7 +211,9 @@
 // Promise is resolved
 
 // eg-2: What if we have another console log above await p
-// ->In this case line above the await prints immediately and at line await p js engine waits for promise to get resolved. once promise get resolved "Namaste Javascript" printed first then "Promise is resolved" get printed.
+// ->In this case line above the await prints immediately and at line await p js engine
+    waits for promise to get resolved. once promise get resolved "Namaste Javascript" 
+    printed first then "Promise is resolved" get printed.
 
 // ->async await waits at particular line of code.
 
@@ -259,7 +266,8 @@
 // ->p2 is 5sec
 
 // ->In this case first "Above await" after 10sec everything get printied.
-// ->Promise p2 is resolved after 5sec but still it has to wait to p1 which is resolved after 10sec.
+// ->Promise p2 is resolved after 5sec but still it has to wait to p1 which is 
+     resolved after 10sec.
 // ->After resolving both promises everything get printed.
 // ->async function is waiting for all the promises to get resolved.
 
@@ -300,7 +308,8 @@
 
 // eg-5:
 // ->In this case p1 takes 5sec and p2 takes 10secs.
-// ->In this case p1 is resolved first and result will be printed after 5sec and p2 is resolved after 10sec and result will be printed after 10sec.
+// ->In this case p1 is resolved first and result will be printed after 5sec and p2 is resolved
+     after 10sec and result will be printed after 10sec.
 // ->when order is resversed the behaviour is changed completely
 
 // const p1 = new Promise(function (resolve, reject) {
@@ -355,7 +364,8 @@
 // ->see the call stack
 // ->Put a debugger above line await p1, below p1 and below p2.
 // ->call stack is where every function get executed.
-// ->When handlePromise() function is called it sees two promises which needs to be resolved. these promise are taking there own time for resolving.
+// ->When handlePromise() function is called it sees two promises which needs to be resolved. 
+    these promise are taking there own time for resolving.
 // ->these are async Promises -> p1,p2
 // ->Intially call stack is empty.
 // ->as soon as handlePromise() function is called it comes inside call stack.
@@ -364,19 +374,27 @@
 // =>Resolving Promise p1
 // ->it starts executing handlePromise function line by line.
 // ->In this case it prints "Above await" string first.
-// ->At line const val1=await p1 js will not wait for promise to resolved but handlePromise() execution will suspend for the time and it handlePromise() execution context moves out of call stack. 
-// ->after suspending it will wait till p1 get resolved then it will move ahead. In this case p1 will resolved after 5sec. 
-// ->after 5 sec handlePromise() function again comes inside call stack and again start execution but it will start executing from where it left. 
+// ->At line const val1=await p1 js will not wait for promise to resolved but handlePromise() 
+     execution will suspend for the time and handlePromise() execution context moves out of 
+     call stack. 
+// ->after suspending it will wait till p1 get resolved then it will move ahead. In this case
+     p1 will resolved after 5sec. 
+// ->after 5 sec handlePromise() function again comes inside call stack and again start 
+     execution but it will start executing from where it left. 
 // ->it starts executing line after await p1 which is
 // console.log("Namaste Javascript 1");
 // console.log(val1);
 // ->After resolving p1 it goes to p2 and sees wheather it resolved or not.
-// ->it again suspend the execution of handlePromise() function and it will move out of call stack.
+// ->it again suspend the execution of handlePromise() function and it will move out of call 
+    stack.
 
 // =>Resolving Promise p2
-// ->Once promise p2 is resolved after 10sec now handlePromise() again comes to call stack and it starts executing from the place it left execution that is line  " console.log("Namaste Javascript 2");".
+// ->Once promise p2 is resolved after 10sec now handlePromise() again comes to call stack and 
+     it starts executing from the place it left execution that is line  " console.log("Namaste 
+     Javascript 2");".
 
-// ->here handlePromise() execution context will not the block the main thread or freeze the webpage if other events are happening they will execute in call stack.
+// ->here handlePromise() execution context will not the block the main thread or freeze the 
+     webpage if other events are happening they will execute in call stack.
 // ->here when promise is not resolved then execution handlePromise() function is suspended.
 
 // // eg-1:
@@ -420,17 +438,20 @@
 
 // ->In this case "console.log("Above await")" prints immedaitely after calling function.
 // ->handlePromise() function saw p1 is not resolved yet. here p1 takes 10 sec to get resolved. 
-//->then handlePromise() execution context moves out of call stack and it will wait for p1 to be resolved.
+//->then handlePromise() execution context moves out of call stack and it will wait for p1 to 
+    be resolved.
 // ->p1 will resolved after 10sec.
 // ->js was synchronous language. p2 resolved already.
 // but js engine waits p1 to be resolved then only it will go to line "const val2 = await p2;".
-// ->after 10sec handlePromise() function moves to call stack and executes from where it left(at line "console.log("Namaste Javascript 1")"
+// ->after 10sec handlePromise() function moves to call stack and executes from where it 
+     left(at line "console.log("Namaste Javascript 1")"
 // ->after p1 resolved then it goes to promise p2.
-// ->p2 was already resolved. it was resolved before p1. all the lines after p2 will be printed after 10sec.
+// ->p2 was already resolved. it was resolved before p1. all the lines after p2 will be printed
+     after 10sec.
 // ->these how async function execution works.
 // ->here main thread is not blocked by handlePromise() function execution context.
-// ->when promises are not resolved then handlePromise() function will get suspended from call stack. it comes into call stack when promises get resolved.
-
+// ->when promises are not resolved then handlePromise() function will get suspended from call 
+     stack. it comes into call stack when promises get resolved.
 // ->debug the code by pointing before promise and after promises p1 and p2.
 
 // eg-1:
@@ -438,13 +459,13 @@
 // const p1 = new Promise(function (resolve, reject) {
 //     setTimeout(function () {
 //         resolve("Promise-1 is resolved")
-//     }, 5000)
+//     }, 10000)
 // })
 
 // const p2 = new Promise(function (resolve, reject) {
 //     setTimeout(function () {
 //         resolve("Promise-2 is resolved")
-//     }, 10000)
+//     }, 5000)
 // })
 
 
@@ -486,9 +507,12 @@
 // Code explaination
 // ->handlePromise() function start executing await over here.
 // ->it waited promise to be resolved.
-// ->In network we will how much time fetch api took to resolve the promise. it took 464ms for resolving promise.
-// ->handlePromise() function will be suspended at line " const data=fetch(API_URL);". it waited for 464ms and resumed its execution.
-// ->handlePromise() function will resume only after fetch call has been successfully fullfilled.
+// ->In network we will how much time fetch api took to resolve the promise. it took 464ms for
+     resolving promise.
+// ->handlePromise() function will be suspended at line " const data=fetch(API_URL);". 
+     it waited for 464ms and resumed its execution.
+// ->handlePromise() function will resume only after fetch call has been successfully 
+     fullfilled.
 // ->once promise resolved then handlePromise()function exectuiton resumes.
 // ->once fetch promise was resolve then it moves to data.json to get resolved.
 // ->here data will get result(Response object).
