@@ -1,8 +1,11 @@
 03-Hoisting in JavaScript 🔥(variables & functions)  Time:8:25 PM
-1. Hoisting is a JavaScript mechanism where all variable and function declarations are moved to the top of their scope before code execution. 
-This means that you can use variables and functions before they are declared, but the value of the variable will be undefined.
+1. Hoisting is a JavaScript mechanism where all variable and function declarations are moved 
+to the top of their scope before code execution. 
+This means that you can use variables and functions before they are declared, but the value 
+of the variable will be undefined.
 
-->Hoisting is phenomena in js by which we can access variables and functions even before they are intialized without any error.
+->Hoisting is phenomena in js by which we can access variables and functions even before they 
+are intialized without any error.
 
 
 eg-
@@ -131,7 +134,8 @@ eg-4:
 ->arrow function behaves like variable.
 ->undefined is given to getName.
 ->getName1 is a function.in this case meomry is allocated for whole function.
-->getName, getName2 functions behave like variables. in this cases it allocates the memory with place holder undefined.
+->getName, getName2 functions behave like variables. in this cases it allocates the memory 
+with place holder undefined.
 
 
 
