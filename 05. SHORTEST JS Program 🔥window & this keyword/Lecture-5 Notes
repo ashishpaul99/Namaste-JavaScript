@@ -83,17 +83,3 @@ console.log(a); //10
 eg-4:
 console.log(this.a);  //10
 console.log(this.b()) //100
-
-
-
-
-
-
-
-
-
-
-
-
-
-
