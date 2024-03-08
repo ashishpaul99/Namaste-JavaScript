@@ -103,7 +103,8 @@ b:function b(){     |      Memory                             |    Code        B
 |     GEC       |          
 |_______________|
 
-->after prinitng x in console the whole execution context of function b() is deleted from call stack.
+->after prinitng x in console the whole execution context of function b() is deleted from call
+stack.
 |               |
 |               |
 |               |        
