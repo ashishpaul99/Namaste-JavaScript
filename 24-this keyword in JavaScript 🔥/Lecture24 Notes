@@ -343,9 +343,7 @@ student1.printName.call(student2); //value of this is student2
 // <button onclick="alert(this.tagName)">Click Me</button>
 
 // ->when button is click it says "Button"
-
 // ->this keyword has different meaning inside classes and constructor.
-
 
 
 // 18. this keyword recap
@@ -359,13 +357,3 @@ student1.printName.call(student2); //value of this is student2
 // 3. the value of the "this" keyword depends on how the function is called.
 // ->when function is called without any reference of an object then the value of "this" keyword is undefined.
 // ->when function is called with reference of object the value of "this" keyword is  calling object.
-
-
-
-
-
-
-
-
-
-
